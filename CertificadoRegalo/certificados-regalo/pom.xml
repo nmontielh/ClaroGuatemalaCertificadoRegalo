@@ -5,6 +5,8 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-  	<module>legacy</module>
+  	<module>claro-ejb</module>
+  	<module>claro-client-ejb</module>
+  	<module>claro-model</module>
   </modules>
 </project>
