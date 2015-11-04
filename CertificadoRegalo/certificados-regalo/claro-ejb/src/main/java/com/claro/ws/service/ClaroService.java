@@ -28,6 +28,14 @@ import com.claro.transfer.certificados.TarjetaCertificadoTO;
 import com.claro.util.ServiceLocator;
 
 public class ClaroService {
+
+	/**
+	 * @see Revisar si este se va a reutilizar para
+	 *      consultaSaldoTarjetaCertificado
+	 * @param numeroCertificado
+	 * @return
+	 * @throws Exception
+	 */
 	public String consultaSaldo(String numeroCertificado) throws Exception {
 		TarjetaCertificadoTO tarjetaCertificadoTO;
 		block4: {
@@ -60,6 +68,14 @@ public class ClaroService {
 				+ tarjetaCertificadoTO.getMensaje();
 	}
 
+	/**
+	 * @see Metodo a refactorizar o reutilizar
+	 * @param numeroTarjeta
+	 * @param montoCertificado
+	 * @param idUsuario
+	 * @return
+	 * @throws Exception
+	 */
 	public String activaTarjetaCertificado(String numeroTarjeta,
 			long montoCertificado, String idUsuario) throws Exception {
 		ActivacionTarjetaCertificadoTO activacionTarjetaCertificadoTO;
@@ -108,6 +124,12 @@ public class ClaroService {
 				+ "|" + activacionTarjetaCertificadoTO.getMensaje();
 	}
 
+	/**
+	 * @see reitilizar o refactorizar
+	 * @param movimientoCertificadoTO
+	 * @return
+	 * @throws Exception
+	 */
 	public String aplicaCertificado(
 			MovimientoCertificadoTO movimientoCertificadoTO) throws Exception {
 		MensajeServiceTO mensajeServiceTO;
@@ -137,6 +159,13 @@ public class ClaroService {
 				+ mensajeServiceTO.getMensaje();
 	}
 
+	/**
+	 * @see Metodo a reutilizar o refactorizar
+	 * @param numeroCertificado
+	 * @param idUsuario
+	 * @return
+	 * @throws Exception
+	 */
 	public String cancelaTarjetaCertificado(String numeroCertificado,
 			String idUsuario) throws Exception {
 		MensajeServiceTO mensajeServiceTO;
@@ -165,6 +194,15 @@ public class ClaroService {
 				+ mensajeServiceTO.getMensaje();
 	}
 
+	/**
+	 * @see Reutilizar o refactorizar
+	 * @param folio
+	 * @param idUsuario
+	 * @param idpuntoVta
+	 * @param referencia
+	 * @return
+	 * @throws Exception
+	 */
 	public String cancelaAplicaCertificado(String folio, String idUsuario,
 			String idpuntoVta, String referencia) throws Exception {
 		MensajeServiceTO mensajeServiceTO;
