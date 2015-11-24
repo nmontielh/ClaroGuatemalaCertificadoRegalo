@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
-			<version>12c-Release-1</version>
+			<version>12.1.0.2</version>
 		</dependency>
 
 		<dependency>
