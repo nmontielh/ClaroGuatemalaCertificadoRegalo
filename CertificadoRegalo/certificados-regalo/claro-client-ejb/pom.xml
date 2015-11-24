@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>claro-client-ejb</artifactId>
-
+ 
 	<build>
 		<plugins>
 			<plugin>
@@ -29,7 +29,7 @@
 			<groupId>javax.ejb</groupId>
 			<artifactId>ejb-api</artifactId>
 			<version>3.0</version>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>javax.jms</groupId>
 			<artifactId>jms</artifactId>

@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- Autor: Jlozano Servicio: CommandBServide -->
+ <query name="getCommandConfByDeviceCommand">select c
+		from CommandDevicemodel c
+		where
+		c.command.idcommand = ? and
+		c.devicemodel.idmodeldevice = ?</query>
+ <!-- Autor: Jlozano Servicio: CommandBService -->
+ <query name="getCommandByIdVehicle">select c,d,dm
+		from Unit u
+		inner join u.devices d
+		inner
+		join d.devicemodel dm
+		inner join dm.commandDevicemodels cdm
+		inner join
+		cdm.command c
+		where u.idunit = ? and
+		u.enabled = true and
+		d.enabled =
+		true and
+		dm.enabled = true and
+		d.status = 1 and
+		c.enabled = true
+		order by
+		c.idcommand</query>
+		
+<query name="getCommandExecByDeviceAndCommandList">select c, c.command
+		from Commandexec c
+		where 
+		c.enabled = true and 
+		c.device.iddevice = ? and
+		c.command.idcommand IN (:commandList)
+		order by c.senddate desc 
+		</query>
+		
+ <!-- Autor: Jlozano Servicio: CommandBService -->
+ <query name="getCommandExecByDeviceAndCommand">select c
+		from Commandexec c
+		where c.senddate = (select
+		max(p.senddate)
+		from Commandexec p
+		where p.command.idcommand = ? and
+		p.device.iddevice = ? and p.enabled = true ) and
+		c.enabled = true and
+		c.command.idcommand = ? and c.device.iddevice = ?)</query>
+ <!-- Autor: Mrivas Servicio: CommandBService -->
+ <query name="getCommandExecByDeviceAndStatus">select ce, d, dm, ce.command from Commandexec ce
+		inner join ce.device d inner join d.devicemodel dm
+		where d.iddevice= ?
+		and ce.status = ? and ce.enabled = true</query>
+ <!-- Autor: Jlozano Servicio: CommandBService -->
+ <query name="getCommandByDevice">select c, d, dm
+		from Device d
+		inner join d.devicemodel
+		dm
+		inner join dm.commandDevicemodels cmdm
+		inner join cmdm.command c
+		where
+		d.iddevice = ? and
+		d.enabled = true and
+		dm.enabled = true and
+		c.enabled = true and
+		d.status = 1</query>
+ <query name="findCommandsAssignedByAlert">select new CommandVO(cmd.idcommand, cmd.alias,
+		cmd.description,
+		cmd.cmdconfmetadata, cmd.enabled)
+		from Command cmd
+		inner join cmd.alertconfs ac
+		where ac.idalertconf = ? and cmd.enabled =
+		true and ac.enabled = true
+		order by cmd.alias</query>
+ <!-- Autor: ?? Modif: GOMEZS - Se agrega filtro para obtener solo comandos 
+		operativos Servicio: getCommandsAvailableByAlertConf -->
+ <query name="findCommandsAvailableByAlert">select new CommandVO(cmd.idcommand, cmd.alias,
+		cmd.description,
+		cmd.cmdconfmetadata, cmd.enabled)
+		from Command cmd
+		where cmd.enabled = true
+		and cmd.operative = true
+		order by cmd.alias</query>
+ <!-- Autor: dpulido Fecha: 04/oct/2013 -->
+ <query name="findCommandsByCoverage">SELECT cmds FROM Coverage cov
+		LEFT JOIN cov.commands
+		cmds
+		WHERE cov.idcoverage = ?
+		AND cov.enabled = true
+		AND cmds.enabled =
+		true
+		and cmds.commandtype = 1
+		order by cmds.alias</query>
+ <!-- Busca todos los comandos de seguridad activos-->
+ <query name="findCommandsAvailableByCoverage">SELECT cmd FROM Command cmd
+		WHERE cmd.idcommand
+		NOT IN(
+		SELECT cmds.idcommand FROM Coverage cov
+		LEFT JOIN cov.commands cmds
+		WHERE cov.idcoverage = ?
+		AND cov.enabled = true
+		AND cmds.enabled = true
+		and cmds.operative = true )
+		and cmd.enabled = true
+		and cmd.commandtype = 1
+		ORDER BY cmd.alias</query>
+ <!-- Autor: sgomez Servicio: Middleware Descripcion: Obtiene Last CommandExec 
+		By Device Fecha: 23/Oct/2013 -->
+ <query name="getLastCommandExecByDevice">select c, cm
+		from Commandexec c, Command cm
+		where
+		c.command.idcommand = cm.idcommand
+		and c.laststatusdate = (select
+		max(p.laststatusdate)
+		from Commandexec p
+		where p.device.iddevice = ? and
+		p.enabled = true ) and
+		c.enabled = true )</query>
+ <query name="getCommandByDeviceAndUserCoverage">select c, d, dm
+		from Device d
+		inner join d.devicemodel dm
+		inner join dm.commandDevicemodels cmdm
+		inner join cmdm.command c
+		where
+		d.iddevice = ? and
+		d.enabled = true and
+		dm.enabled = true and
+		c.operative = ? and
+		c.enabled = true and
+		d.status = 1 AND c.idcommand in (
+		SELECT
+		commandos.idcommand
+		FROM Mayauser mayauser
+		INNER JOIN
+		mayauser.mayauserMayausergroups intermugs
+		INNER JOIN
+		intermugs.mayausergroup mayausergroup
+		INNER JOIN
+		mayausergroup.coverages coverage
+		INNER JOIN coverage.commands commandos
+		WHERE
+		mayauser.enabled = true
+		AND intermugs.enabled = true
+		AND
+		mayausergroup.enabled = true
+		AND coverage.enabled = true
+		AND
+		mayauser.idmayauser = ? )
+		order by c.idcommand</query>
+ <query name="getCommandByUnitShipperAndOwner">SELECT DISTINCT cmd FROM Shipperconf sca INNER JOIN
+		sca.shipperconfCommands
+		sc_cmd INNER JOIN sc_cmd.command cmd
+		WHERE
+		sca.idshipperconf IN (
+		SELECT DISTINCT sc.idshipperconf FROM
+		Shipperconf sc
+		LEFT JOIN sc.unitgroups ugs
+		INNER JOIN ugs.unitUnitgroups
+		uugs
+		WHERE sc.clientByIdclientshipper = ?
+		AND sc.clientByIdclientowner =
+		?
+		AND uugs.unit = ?
+		AND ugs.enabled = TRUE
+		AND uugs.unit.enabled = TRUE
+		AND uugs.enabled = TRUE
+		AND now() BETWEEN sc.startdate
+		AND CASE WHEN
+		sc.finishdate IS NULL THEN (CURRENT_DATE + 1) ELSE
+		sc.finishdate END
+		)</query>
+ <!-- Author: martinezcag Servicio: DeviceCfgDataService Descripcion: Obtiene 
+		los comandos por estatus asociados a un dispositivo. Fecha: 23/Jul/2014 -->
+ <query name="getCommandsByStatus">SELECT ce, d, c, mu
+		FROM Commandexec ce
+		INNER JOIN
+		ce.device d
+		INNER JOIN ce.command c
+		INNER JOIN ce.mayauser mu
+		WHERE
+		d.iddevice = ?
+		AND ce.status IN (:commandStatus)
+		AND ce.enabled = true</query>
+ <query name="getCommandExecByMessage">SELECT bmsg.commandexec, bmsg.commandexec.command
+		FROM BinaryMsg bmsg
+		WHERE bmsg.idmessage = ?</query>
+ <!-- Descripcion: Obtiene los mensajes libre asociados a los comandos libre 
+		derate por device, producto y tipo -->
+ <query name="getFreeDerateMessage">
+ <![CDATA[
+             SELECT m FROM Message m
+			WHERE device.iddevice = ? and		
+			m.messageType = ? and
+			m.sendDate >= ? 
+			AND m.sendDate <= ? 
+			ORDER BY m.sendDate ASC
+			]]>
+			</query>
+ <!-- Descripcion: Obtiene los mensajes libre asociados a los comandos libre 
+		derate por device, producto, tipo, y texto a buscar -->
+ <query name="getFreeDerateMessageByText">
+	<![CDATA[
+		SELECT m FROM Message m
+		WHERE device.iddevice = ? and		
+		m.messageType = ? and
+		m.body = ? and
+		m.sendDate >= ? 
+		AND m.sendDate <= ? 
+		ORDER BY m.sendDate ASC
+		]]>
+		</query>
+		
+		
+		 <!-- Descripcion: Obtiene los mensajes libre asociados a los comandos libre 
+		derate por device, producto y tipo -->
+ <query name="getSecurityDerateMessageResponse">
+ <![CDATA[
+             SELECT m FROM Message m
+			WHERE device.iddevice = ? and		
+			m.messageType = ? and
+			m.sendDate >= ? 
+			AND m.sendDate <= ? 
+			AND m.mayauser is null
+			ORDER BY m.sendDate ASC
+			]]>
+			</query>
+ <!-- Descripcion: Obtiene los mensajes libre asociados a los comandos libre 
+		derate por device, producto, tipo, y texto a buscar -->
+ <query name="getSecurityDerateMessageResponseByText">
+	<![CDATA[
+		SELECT m FROM Message m
+		WHERE device.iddevice = ? and		
+		m.messageType = ? and
+		m.body = ? and
+		m.sendDate >= ? 
+		AND m.sendDate <= ? 
+		AND m.mayauser is null
+		ORDER BY m.sendDate ASC
+		]]>
+		</query>
+		
+		
+ <!-- Descripcion: Obtiene los comanexec dada un device, tipo de mensaje 
+		y tipo de producto -->
+ <query name="findCmdExecSecurityDerate">SELECT ce FROM Message m
+		INNER JOIN m.binarymsg bm
+		INNER JOIN bm.commandexec
+		ce
+		WHERE m.body = ? and		
+		m.messageType = ? and
+		ce.status = ? and
+		m.device.iddevice = ?
+		ORDER BY ce.senddate DESC</query>
+ <query name="getMessageByDeviceAndStatusDerate">
+                    SELECT m FROM Message m 
+                      WHERE device.iddevice = ? and m.messageStatus = ? and m.messageType in (?)
+                      AND m.enabled = true
+            </query>
+</hibernate-mapping>

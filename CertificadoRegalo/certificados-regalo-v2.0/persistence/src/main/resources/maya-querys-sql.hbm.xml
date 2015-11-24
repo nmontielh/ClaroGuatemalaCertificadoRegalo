@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping auto-import="true">
+
+	<!-- Agregar los VO para transformaciones en los query -->
+	<!-- <import class=""/> -->
+
+	<!-- Autor: Marcos Rivas Bermúdez -->
+	<sql-query name="findPositionsdActivityReportDriversOpt">
+		<![CDATA[
+			SELECT du.iddriver, e.latitude, e.longitude, e.location -> 'ciudad' as ciudad, 
+			e.location -> 'estado' as estado, e.location -> 'localidad' as georeference, e.senddate, 
+			e.otros -> 'vehicle_movement_status' as status, u.alias, e.speed, e.odometer, e.reason
+			FROM driver_unit du
+				LEFT JOIN unit u on u.idunit=du.idunit
+				LEFT JOIN device dev on dev.idunit=u.idunit
+				LEFT JOIN event e ON e.iddevice = dev.iddevice
+					AND e.senddate BETWEEN du.assignstartdate AND coalesce(du.assignenddate, ?)
+			WHERE e.senddate BETWEEN ? AND ?
+			AND du.iddriver IN (:driverIDs)
+			AND (e.odometer IS NOT NULL OR e.odometer > 0)
+			ORDER BY e.senddate, e.idmessage ASC
+
+		]]>
+	</sql-query>
+
+	<!-- Autor: Marcos Rivas Bermúdez -->
+	<sql-query name="findMessagesReportDriversOpt">
+		<![CDATA[
+			SELECT du.iddriver, m.idmessage, m.senddate, m.longitude, m.latitude, m.location, u.alias, 
+			m.messagetype, m.device_aknowledge, coalesce (pm.whoissender, mcs.whoissender) as sender, 
+			mconf.macronumber, mconf.configuration -> '0' as name, usr.username
+			FROM driver_unit du
+				LEFT JOIN unit u on u.idunit=du.idunit
+				LEFT JOIN device dev on dev.idunit=u.idunit
+				LEFT JOIN message m ON m.iddevice = dev.iddevice
+					AND m.senddate BETWEEN du.assignstartdate AND coalesce(du.assignenddate, ?)
+				LEFT JOIN plainmsg pm on pm.idmessage = m.idmessage
+				LEFT JOIN macro mcs on mcs.idmessage = m.idmessage
+				LEFT JOIN macroconf mconf on mconf.idmacroconf = mcs.idmacroconf
+				LEFT JOIN mayauser usr on usr.idmayauser=m.idmayauser
+			WHERE m.senddate BETWEEN ? AND ?
+			AND (m.messageType = 1 or m.messageType = 3)
+			AND du.iddriver IN (:driverIDs)
+			ORDER BY du.iddriver, m.senddate ASC
+		]]>
+	</sql-query>
+
+
+	<!-- Autor: Marcos Rivas Bermúdez -->
+	<sql-query name="findEventsWithShipperByClientIdAndReceivedDates">
+		<![CDATA[
+			select e.* from unit u
+				inner join device d on d.idunit = u.idunit
+				inner join event e on e.iddevice = d.iddevice
+				where u.idclient = ?
+				and e.receivedate between ? and ?
+			union all
+			select e.* from shipperconf sh 
+				inner join shipperconf_unitgroup shu on sh.idshipperconf = shu.idshipperconf
+				inner join unitgroup ug on ug.idunitgroup = shu.idunitgoup --and ug.idclient = sh.idclientowner
+				inner join unit_unitgroup uug on ug.idunitgroup = uug.idunitgroup 
+				inner join device d on d.idunit = uug.idunit
+				inner join event e on e.iddevice = d.iddevice
+				where idclientshipper = ? and e.receivedate between ? and ?
+		]]>
+	</sql-query>
+	<!-- Autor: Noe Montiel Hernandez -->
+	<!-- Servicio: findIdGeoreferenceByIdClient, se le proporciona idClient, 
+		altitud y longitud, este servicio se utiliza para el middleware -->
+
+
+	<sql-query name="findIdGeoreferenceByIdClient">	
+	<![CDATA[
+		SELECT
+		omni_ro_get_current_geofence(?,?,?);
+		]]>
+	</sql-query>
+
+	<!-- Autor: Marcos Rivas -->
+	<sql-query name="generateClientCode">	
+	<![CDATA[
+		SELECT substring( cast(uuid_generate_v4() as text),1,5);
+		]]>
+	</sql-query>
+
+	<!-- Autor: Marcos Rivas -->
+	<sql-query name="generateOtsupportUser">	
+	<![CDATA[
+		select ot_rw_createsuperuser(?);
+		]]>
+	</sql-query>
+
+	<sql-query name="findLocationByLongAndLat">	
+	<![CDATA[
+		select * FROM each(ot_ro_get_location(?,?,?));
+		]]>
+	</sql-query>
+
+	<sql-query name="findLocationOnlyByLongAndLat">	
+	<![CDATA[
+		select * FROM each(ot_ro_get_location(?,?));
+		]]>
+	</sql-query>
+
+	<sql-query name="deleteCurrentGeofence">
+	<![CDATA[
+		DELETE FROM current_geofence WHERE idgeoreference = ? AND idunit = ?
+	]]>
+	</sql-query>
+
+	<!-- Actualiza la current geofence por medio de SQL -->
+
+	<sql-query name="updateCurrentGeofence">
+	<![CDATA[
+		SELECT ot_rw_update_current_geofence(?, ?);
+	]]>
+	</sql-query>
+
+	<!-- Autor: NMMH -->
+	<!-- Nuevo servicio para obtener las geocercas, este servicio lo utilizan 
+		los servicios del MDW -->
+	<!-- idClient, x0, y0, x1, y1 -->
+	<sql-query name="findGeofencesByIdClientAndCoordinates">	
+	<![CDATA[
+		SELECT
+		omni_ro_get_current_geofence(?,?,?,?,?);
+		]]>
+	</sql-query>
+
+	<!-- Autor: NMMH -->
+	<!-- Nuevo servicio para registrar en las tablas de reportes, este servicio 
+		lo utilizan los servicios del MDW -->
+	<!-- idUnit(int), current_geofences (int[]) -> {a,b,c}, seendate (timestampt) -->
+
+	<sql-query name="insertIntoGeofenceHistory">	
+	<![CDATA[
+		SELECT
+		omni_rw_insert_geofence_history(?, cast(? as integer[]), cast(? as timestamp));
+		]]>
+	</sql-query>
+
+	<!-- Autor: dpulido Fecha: 22/nov/2013 -->
+	<sql-query name="findGeofencesByIdClientAndCoordinatesZoom">	
+	<![CDATA[
+		SELECT
+		omni_ro_get_current_geofence(?,?,?,?,?,?);
+		]]>
+	</sql-query>
+
+	<!-- Autor: dpulido Fecha: 27/nov/2013 -->
+	<sql-query name="findAllActivityVehicles">	
+	<![CDATA[
+		SELECT alts.alert_type, alts.alertdate, alts.idalert, ae.idevent, alts.relevantinfo  FROM unit AS u
+			LEFT JOIN device AS dvs ON u.idunit = dvs.idunit
+			INNER JOIN devicemodel dm ON dvs.idmodeldevice = dm.idmodeldevice
+			LEFT JOIN alert alts ON dvs.iddevice = alts.iddevice
+			LEFT JOIN alert_event ae ON alts.idalert = ae.idalert
+				WHERE u.enabled = true
+				AND dvs.enabled = true
+				AND dm.enabled = true
+				AND u.idunit = ?
+				AND ( alts.alertdate BETWEEN ? AND ? )
+		]]>
+	</sql-query>
+
+	<!-- Autor: dpulido Fecha: 27/nov/2013 -->
+	<sql-query name="countUnitsByUserCoverage">	
+	<![CDATA[
+		SELECT COUNT( DISTINCT un.idunit)
+			FROM Client AS c 
+				INNER JOIN Mayauser AS mu ON c.idclient = mu.idclient
+				INNER JOIN Mayauser_Mayausergroup AS intermugs ON mu.idmayauser = intermugs.idmayauser
+				INNER JOIN Mayausergroup AS mugs ON intermugs.idmayausergroup = mugs.idmayausergroup		
+				INNER JOIN Coverage_Usergroup AS covsusrg ON mugs.idmayausergroup = covsusrg.idmayausergroup
+				INNER JOIN Coverage AS covs ON covsusrg.idcoverage = covs.idcoverage
+				INNER JOIN Coverage_Unitgroup AS covsung ON covs.idcoverage = covsung.idcoverage
+				INNER JOIN Unitgroup AS ugs ON covsung.idunitgroup = ugs.idunitgroup
+				INNER JOIN Unit_Unitgroup AS uugs ON ugs.idunitgroup = uugs.idunitgroup
+				INNER JOIN Unit AS un ON uugs.idunit = un.idunit				
+					WHERE c.enabled = true
+						AND intermugs.enabled = true
+						AND mugs.enabled = true
+						AND covs.enabled = true
+						AND ugs.enabled = true
+						AND uugs.enabled = true
+						AND un.enabled = true
+						AND mu.idmayauser = ?				  
+						AND c.idclient = ?	
+		]]>
+	</sql-query>
+
+	<!-- Autor: martinezcag -->
+	<!-- Obtiene la configuración actual del dispositivo -->
+	<!-- params: el número de serie del dispositivo -->
+	<sql-query name="getDeviceConf">
+            <![CDATA[
+			SELECT (each(q)).key,(each(q)).value FROM ot_ro_get_device_conf(?) AS q;
+		]]>
+	</sql-query>
+
+	<!-- Autor: martinezcag -->
+	<!-- Obtiene la configuración por default del dispositivo -->
+	<!-- params: el número de serie del dispositivo -->
+	<sql-query name="getDeviceDefaultConf">
+            <![CDATA[
+			SELECT (each(q)).key,(each(q)).value FROM ot_ro_get_device_defaultconf(?) AS q;
+		]]>
+	</sql-query>
+
+	<!-- Autor: martinezcag -->
+	<!-- Obtiene los puertos asociados a un dispositivo -->
+	<!-- params: el identificador del dispositivo -->
+	<!-- Fecha: 3/jun/2014 -->
+	<sql-query name="getPortsByDevice">
+            <![CDATA[
+			SELECT p.idport, p.iddevice,
+                                scfg.idport as sidport, scfg.eventincidence, scfg.transmission, scfg.parity, scfg.stopbits, scfg.numberbits, scfg.serialport_devicetype, scfg.alias_port, scfg.bus, scfg.updateinterval,
+                                ocfg.idport as oidport, ocfg.description, ocfg.type_information, ocfg.enable, ocfg.updateinterval as oupdateinterval
+                            FROM public.port p
+                            INNER JOIN public.portcfg pcfg ON pcfg.idport = p.idport
+                            LEFT OUTER JOIN public.serialcfg scfg ON scfg.idport = p.idport
+                            LEFT OUTER JOIN public.onewirecfg ocfg ON ocfg.idport = p.idport
+                            WHERE p.iddevice = ?;
+		]]>
+	</sql-query>
+
+	<!-- Autor: dpulido -->
+	<!-- Metodo de consulta para el reporte de resumen de actividad -->
+	<!-- params: serialDevice, initDate, endDate, sum? -->
+	<sql-query name="dw_daily_activity_summarized">	
+		<![CDATA[
+			SELECT  serialnumber, dmodel, startdate, start_lat, start_lon, start_loc, geofence, odometer, movement_status, iddriver, speed,reason, sum_km, t_detenido 
+			from dw_daily_activity_summarized(?,CAST(? AS timestamptz),CAST(? AS timestamptz),?) order by serialnumber,startdate asc;
+		]]>
+	</sql-query>
+
+	<!-- Autor: dpulido -->
+	<!-- Consulta para validar el login de los servicios rest movil -->
+	<!-- Params: username, ctrlcode -->
+	<sql-query name="mayaMobileRestAuthenticator_SQL">	
+		<![CDATA[
+			SELECT idmayauser, idclient FROM mayauser WHERE username = ? AND ctrlcode = ?;
+		]]>
+	</sql-query>
+
+	<!-- Autor: fbartolo -->
+	<!-- Consulta para obtener el bus de un odometro del jpot-ecm -->
+	<!-- Params: username, ctrlcode -->
+	<sql-query name="getBusOdometer">	
+		<![CDATA[
+		SELECT distinct (bus) FROM serialcfg
+                           INNER JOIN port on serialcfg.idport = port.idport
+                           INNER JOIN device ON port.iddevice = device.iddevice                           
+                                WHERE serialport_devicetype = 1 and device.iddevice = ?;
+		]]>
+	</sql-query>
+
+
+	<!-- Autor: GOMEZS -->
+	<!-- Consulta para obtener el km diarios -->
+	<!-- Params: username, ctrlcode -->
+	<sql-query name="getDailyDistanceByDevice">	
+		<![CDATA[
+			SELECT idevent,((MAX(odometer) OVER w - MIN(odometer) OVER w)) daily_distance_km  
+			FROM EVENT  
+			WHERE iddevice = ?
+			AND senddate BETWEEN ? AND ? 
+			WINDOW w AS (PARTITION BY CAST((senddate AT TIME ZONE 'America/Mexico_city') AS DATE),iddevice ORDER BY senddate) 
+			ORDER BY iddevice,senddate;
+		]]>
+	</sql-query>
+
+	<!-- Autor: fbartolo -->
+	<!-- Obtiene el evento mas cercano de una fecha por dispositivo. -->
+	<!-- params: el identificador del dispositivo y fecha. -->
+	<!-- Fecha: 12/nov/2014 -->
+	<sql-query name="findEventByDeviceDate">
+        <![CDATA[
+            with q as (SELECT e.latitude, e.longitude, e.location->'localidad' as localidad, e.senddate FROM event e
+                            inner join device d on e.iddevice = d.iddevice         
+                            WHERE e.iddevice = ?
+                               AND d.enabled = true
+                               AND e.senddate between ? and ?
+                               order by e.senddate desc
+                      ) select * from q limit 1;
+        ]]>
+	</sql-query>
+	
+	<sql-query name="findAFCAlerts">
+		<![CDATA[
+			SELECT * FROM ot_ro_afc_ws_alert(?,?,?)
+		]]>
+	</sql-query>
+	
+	<sql-query name="findAFCCurrentUnitFuel">
+		<![CDATA[
+			SELECT idunit,senddate,latitude,longitude,ignition_on,location,speed,fuellevel_t1,fuellevel_t2,fuellevel_t3,econum,
+			serialnumber,idcustomer,unit_status,erpid
+			FROM ot_ro_afc_ws_unitfuel_current(?)
+		]]>
+	</sql-query>
+	 
+
+	<sql-query name="obtainSecurityDerateCommmands">
+        <![CDATA[
+            select m.idmessage, m.device_aknowledge, m.senddate, m.longitude, m.latitude, m.idmayauser, c.idcmdexe 
+                 from message m 
+                    inner join binarymsg b on m.idmessage = b.idmessage
+                    inner join commandexec c on b.idcmdexe = c.idcmdexe
+                    where m.iddevice = ? and m.messagetype = ?  and m.senddate between ? and ?
+                    order by m.senddate asc
+	]]>
+	</sql-query>
+
+	<sql-query name="obtainSecurityDerateCommmandsByText">
+        <![CDATA[
+            select m.idmessage, m.device_aknowledge, m.senddate, m.longitude, m.latitude, m.idmayauser, c.idcmdexe 
+                 from message m 
+                    inner join binarymsg b on m.idmessage = b.idmessage
+                    inner join commandexec c on b.idcmdexe = c.idcmdexe
+                    where m.iddevice = ? and m.messagetype = ? and m.device_aknowledge = ? and 
+                          m.senddate between ? and ?
+                    order by m.senddate asc
+	]]>
+	</sql-query>
+	
+</hibernate-mapping>

@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>claro-ejb</artifactId>
 
-	<build>
+	<build> 
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -30,7 +30,7 @@
 			<artifactId>ejb-api</artifactId>
 			<version>3.0</version>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>javax.jms</groupId>
 			<artifactId>jms</artifactId>
 			<version>1.1</version>

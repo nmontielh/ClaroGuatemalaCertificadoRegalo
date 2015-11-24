@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+
+	<context:property-placeholder location="classpath:/configuration.properties" />
+	<!-- Se agrega lector de propiedaddes -->
+
+ 	<!-- Maya Core DataSource -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- these are C3P0 properties -->
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
+		<property name="minPoolSize" value="${c3p0.minPoolSize}" />
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+
+	</bean>
+
+	<!-- DWH Datasource -->
+	<bean id="dwhDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+
+		<property name="jdbcUrl" value="${dwh.jdbc.url}" />
+		<property name="user" value="${dwh.jdbc.user}" />
+		<property name="password" value="${dwh.jdbc.password}" />
+
+		<!-- these are C3P0 properties -->
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
+		<property name="minPoolSize" value="${c3p0.minPoolSize}" />
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+
+	</bean>
+
+	<!-- FS Datasource para pruebas unitarias -->
+	<bean id="fsDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+
+		<property name="jdbcUrl" value="${fs.jdbc.url}" />
+		<property name="user" value="${fs.jdbc.user}" />
+		<property name="password" value="${fs.jdbc.password}" />
+
+		<!-- these are C3P0 properties -->
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
+		<property name="minPoolSize" value="${c3p0.minPoolSize}" />
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
+
+	</bean>
+
+</beans>
