@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ClaroServiceService WSDL service -->
+
+  <service name="ClaroService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.ws.claro.com"/>
+      <parameter name="wsdlServiceElement" value="ClaroServiceService"/>
+      <parameter name="schemaQualified" value="http://service.ws.claro.com,http://exception.claro.com,http://certificados.transfer.claro.com"/>
+      <parameter name="wsdlServicePort" value="ClaroService"/>
+      <parameter name="className" value="com.claro.ws.service.ClaroService"/>
+      <parameter name="wsdlPortType" value="ClaroService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="consultaSaldo" qname="operNS:consultaSaldo" returnQName="retNS:consultaSaldoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroCertificado" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="activaTarjetaCertificado" qname="operNS:activaTarjetaCertificado" returnQName="retNS:activaTarjetaCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroTarjeta" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montoCertificado" type="tns:long"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idUsuario" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="aplicaCertificado" qname="operNS:aplicaCertificado" returnQName="retNS:aplicaCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://certificados.transfer.claro.com" qname="pns:movimientoCertificadoTO" type="tns:MovimientoCertificadoTO"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="cancelaTarjetaCertificado" qname="operNS:cancelaTarjetaCertificado" returnQName="retNS:cancelaTarjetaCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroCertificado" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idUsuario" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="cancelaAplicaCertificado" qname="operNS:cancelaAplicaCertificado" returnQName="retNS:cancelaAplicaCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:folio" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idUsuario" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idpuntoVta" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:referencia" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="consultaMovimientosTajetaCertificado" qname="operNS:consultaMovimientosTajetaCertificado" returnQName="retNS:consultaMovimientosTajetaCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroCertificado" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="consultaTajeta" qname="operNS:consultaTajeta" returnQName="retNS:consultaTajetaReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroTarjeta" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montoCertificado" type="tns:long"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="consultaSaldoCertificado" qname="operNS:consultaSaldoCertificado" returnQName="retNS:consultaSaldoCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroTarjeta" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="consultaMovimientosCertificado" qname="operNS:consultaMovimientosCertificado" returnQName="retNS:consultaMovimientosCertificadoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroTarjeta" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.ws.claro.com" xmlns:retNS="http://service.ws.claro.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="consultaTajetaVendida" qname="operNS:consultaTajetaVendida" returnQName="retNS:consultaTajetaVendidaReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numeroTarjeta" type="tns:string"/>
+        <parameter xmlns:pns="http://service.ws.claro.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:montoCertificado" type="tns:long"/>
+        <fault xmlns:fns="http://service.ws.claro.com" xmlns:tns="http://exception.claro.com" name="ClaroException" qname="fns:fault" class="com.claro.exception.ClaroException" type="tns:ClaroException"/>
+      </operation>
+      <parameter name="allowedMethods" value="cancelaAplicaCertificado consultaMovimientosTajetaCertificado consultaSaldo activaTarjetaCertificado consultaTajetaVendida aplicaCertificado consultaMovimientosCertificado consultaTajeta cancelaTarjetaCertificado consultaSaldoCertificado"/>
+
+      <typeMapping xmlns:ns="http://certificados.transfer.claro.com" qname="ns:MovimientoCertificadoTO" type="java:com.claro.transfer.certificados.MovimientoCertificadoTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://exception.claro.com" qname="ns:ClaroException" type="java:com.claro.exception.ClaroException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

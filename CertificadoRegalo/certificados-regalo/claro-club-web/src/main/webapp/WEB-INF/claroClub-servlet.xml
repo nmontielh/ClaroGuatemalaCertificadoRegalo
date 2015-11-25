@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="simpleURLMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<!-- Controladores comunes   -->
+				<!-- Controladores comunes   -->
+				<prop key="/menu.do">ValidaUsuario</prop>
+				<prop key="/consultaPrincipal.do">ConsultaController</prop>
+				<prop key="/consultaPuntos.do">ConsultaPuntosController
+				</prop>
+				<prop key="/alianzas.do">AlianzasController</prop>
+				<prop key="/movimientos.do">MovimientosController</prop>
+				<prop key="/redenciones.do">RedencionesController</prop>
+
+				<!-- Controles de Puntitos -->
+				<prop key="/consultaDetallePuntitos.do">ConsultaPuntitosDetalleController
+				</prop>
+				<prop key="/menuPuntitos.do">MenuPuntitosController</prop>
+				<prop key="/consultaPuntitos.do">ConsultaPuntitosController
+				</prop>
+				<prop key="/consultaUsuario.do">ConsultaUsuarioController
+				</prop>
+				<prop key="/buscaUsuario.do">BuscaUsuarioController</prop>
+				<prop key="/adminUsuarios.do">UsuarioController</prop>
+				<prop key="/consultaLinea.do">ConsultaLineaPuntitos</prop>
+				<prop key="/consultaPuntVenta.do">ConsultaPtoVtaController
+				</prop>
+				<prop key="/PtoVtaController.do">PtosVtaController</prop>
+				<prop key="/agregaPromociones.do">AgregaPromocionesController
+				</prop>
+				<prop key="/consultaArchivos.do">ConsultaPromociones</prop>
+				<prop key="/eliminaDocumentos.do">EliminaPromocionesController
+				</prop>
+				<prop key="/consultaPlanes.do">ConsultaPlanesController
+				</prop>
+				<prop key="/consultaAltaArchivos.do">ConsultaAgregaArchivos</prop>
+				<prop key="/consultaProcesaArchivos.do">ConsultaProcesaArchivos</prop>
+				<!--  Pantalla Consulta Distribuidores JAPA 20/07/2011 Folio 93379 -->
+				<prop key="/consultaPromocionesDistribuidores.do">ConsultaPromocionesDistribuidores
+				</prop>
+				<!--  Pantalla Procesa Membresías JSC Folio:115460  -->
+				<prop key="/consultaProcesaMembresias.do">ConsultaProcesaMembresias
+				</prop>
+				<prop key="/procesaArchivoMembresia.do">ProcesaArchivoMembresiaController
+				</prop>
+				<prop key="/consultaCatalogo.do">ConsultaCatalogoController
+				</prop>
+				<prop key="/procesaArchivos.do">ProcesaArchivosController
+				</prop>
+				<prop key="/detPuntosVta.do">DetallePtosVta</prop>
+				<prop key="/consultaDetallePuntos.do">ConsultaPuntosDetalleController
+				</prop>
+				<prop key="/administracion.do">AdministracionController
+				</prop>
+				<prop key="/menuAdministracion.do">MenuAdministracionController
+				</prop>
+				<prop key="/actualizaPassword.do">ActualizaPasswordController
+				</prop>
+				<prop key="/consultaMarcas.do">ConsultaMarcasController
+				</prop>
+				<prop key="/validaPlan.do">ValidaPlanController</prop>
+				<!--  Modificaciones CA JAPA 22/07/2011 Folio 84048 y ZZZZZZ -->
+				<prop key="/consultaPlanesRedencion.do">ConsultaPlanesRedencionController
+				</prop>
+				<prop key="/validaPlanRedencion.do">ValidaPlanRedencionController
+				</prop>
+				<!--  Modificaciones CA CECM 06/08/2013 Folio 131191 -->
+				<prop key="/consultaProcesaInbursa.do">ConsultaProcesaInbursa</prop>
+
+				<prop key="/consultaModelos.do">ConsultaModelosController
+				</prop>
+				<prop key="defineIva.do">ValidaIvaController</prop>
+				<prop key="consultaProductos.do">ConsultaProductosController
+				</prop>
+				<prop key="/impresion.do">ImpresionController</prop>
+				<prop key="/consultaMembresia.do">ConsultaMembresiaController
+				</prop>
+				<prop key="/guardaMembresia.do">GuardaMembresiaController
+				</prop>
+				<prop key="/consultaPtsMembresia.do">ConsultaPuntosMembresiaController
+				</prop>
+				<prop key="/consultaRenuncia.do">ConsultaRenunciaController
+				</prop>
+				<prop key="/consultaPtsRenuncia.do">ConsultaPuntosRenunciaController
+				</prop>
+				<prop key="/impresionGeneral.do">BuscaRedencionesController
+				</prop>
+				<prop key="/impresionBonoInbursa.do">BuscaBonoInbursaController
+				</prop>
+				<prop key="/cancelaRedenciones.do">ConsultaRedencionesCancelaController
+				</prop>
+				<prop key="/redencionCancela.do">CancelaRedencionController
+				</prop>
+				<prop key="/transferencia.do">TransferenciaController</prop>
+				<prop key="/transferenciaDetalle.do">TransferenciaDetalleController
+				</prop>
+				<prop key="/aplicaTransferencia.do">AplicarTransferenciaController
+				</prop>
+				<prop key="/alianzasCancela.do">AlianzasCancelaController
+				</prop>
+				<prop key="/alianzasAltaCambio.do">AlianzasAltaCambioController
+				</prop>
+				<prop key="/alianzasBuscaCancela.do">AlianzaBuscaCancelaController
+				</prop>
+				<prop key="/validaAlianza.do">ValidaAlianzaController</prop>
+				<prop key="/muestraAlianza.do">MuestraAlianzaController
+				</prop>
+				<prop key="/actualizaAlianza.do">ActualizaAlianzaController
+				</prop>
+				<prop key="/cancelaAlianza.do">CancelaAlianzaController
+				</prop>
+				<prop key="/realizaRedencion.do">RealizaRedencionController
+				</prop>
+				<prop key="/aplicaAlianzaCancela.do">AlianzaAplicaCancelaController
+				</prop>
+				<prop key="/alianzaCanje.do">AlianzaCanjeController</prop>
+				<prop key="/agregaAlianza.do">AgregaAlianzaController</prop>
+				<prop key="/muestraAmexCanje.do">MuestraAmexCanjeController
+				</prop>
+				<prop key="/muestraLiberar.do">MuestraLiberarController
+				</prop>
+				<prop key="/confirmaCanje.do">ConfirmaCanjeController</prop>
+				<prop key="/muestraCertificado.do">MuestraCertificadoController
+				</prop>
+				<prop key="/aplicaCanje.do">AlianzaAplicaCanjeController
+				</prop>
+				<prop key="/accionPuntos.do">AccionPuntosController</prop>
+				<prop key="/aplicaAsignarPuntos.do">AplicaAsignarPuntosController
+				</prop>
+				<prop key="/eliminarPuntos.do">EliminarPuntosController
+				</prop>
+				<prop key="/framePuntVenta.do">FramePtoVta</prop>
+				<prop key="/salir.do">SalirController</prop>
+				<prop key="/cancelaPuntitos.do">CancelaPuntitos</prop>
+				<prop key="/impresionAlianzas.do">ImpresionAlianzaController
+				</prop>
+				<prop key="/retencion.do">RetencionController</prop>
+				<prop key="/generarCertificadoLealtad.do">GenerarCertificadoLealtadController
+				</prop>
+				<prop key="/consultarCertificadoLealtad.do">ConsultarCertificadoLealtadController
+				</prop>
+				<prop key="/imprimirCertificadoLealtad.do">ImprimirCertificadoLealtadController
+				</prop>
+				<prop key="/cancelarCertificadoLealtad.do">CancelarCertificadoLealtadController
+				</prop>
+				<prop key="/validaLineaCertificado.do">ValidaLineaCertificadoController
+				</prop>
+				<prop key="/actualizaFolioSap.do">ActualizaFolioSapController
+				</prop>
+				<prop key="/actualizaFolio.do">ActualizaFolioController
+				</prop>
+				<prop key="/cancelaRetencion.do">CancelaRetencionController
+				</prop>
+				<prop key="/estados.do">ConsultaEstadoCiudadController
+				</prop>
+				<prop key="/validaProductosTA.do">ValidaProductosTAController
+				</prop>
+				<prop key="/almacenaCertificadoLealtad.do">AlmacenaCertificadoLealtadController
+				</prop>
+				<prop key="/consultaBeneficios.do">ConsultaBeneficiosController
+				</prop>
+				<prop key="/consultaBeneficiosMarca.do">ConsultaBeneficiosMarcaController
+				</prop>
+				<prop key="/consultaManuales.do">ConsultaManualesController
+				</prop>
+				<prop key="/avisos.do">AvisosController</prop>
+				<prop key="/avisosAccion.do">AvisosAccionController</prop>
+				<prop key="marquesinaAvisos.do">MarquesinaAvisosController
+				</prop>
+				<prop key="/menuPromociones.do">MenuPromocionesController
+				</prop>
+				<prop key="/actualizaCatalogo.do">ActualizaCatalogos</prop>
+				<prop key="/aseguramientoIni.do">aseguraminetoIniController
+				</prop>
+				<prop key="/seguridad.do">seguridadController</prop>
+				<prop key="/perfiles.do">perfilesController</prop>
+				<prop key="/privilegiosPerfiles.do">privilegiosPerfilesController
+				</prop>
+				<prop key="/privilegios.do">privilegiosController</prop>
+				<prop key="/privilegiosDetalle.do">privilegiosDetalleController
+				</prop>
+				<prop key="/actualizaPrivilegios.do">actualizaPrivilegiosController
+				</prop>
+				<prop key="/reportePerfiles.do">reportePerfilesController
+				</prop>
+				<prop key="/reportesCa.do">reportesCirculoAzulController
+				</prop>
+				<prop key="/generaReporteCa.do">generaReporteCirculoAzulController
+				</prop>
+				<!--
+					Folio 114032 Asignacion de puntos por cancelacion de cuenta erronea
+			-->
+				<prop key="/AsignacionPorError.do">AsignacionPorErrorAplicaController
+				</prop>
+				<prop key="/lineasRestringidas.do">lineasRestringidasController
+				</prop>
+				<prop key="/cargaLineasRestringidas.do">cargaLineasRestringidasController
+				</prop>
+				<!-- CANCELACION DE TRANSFERENCIA - JAPA 17/12/2012 Folio 120213 / -->
+				<prop key="/cancelaTransferencia.do">CancelaTransferenciaController
+				</prop>
+				<prop key="/cancelaTransferencia1.do">CancelaTransferenciaController
+				</prop>
+				<prop key="/reporteLineasRestringidas.do">ReporteLineasRestringidasController
+				</prop>
+				<!-- MODULO ASIGNACION DE PUNTOS - JAPA 07/02/2013 Folio 121733 / -->
+				<prop key="/menuAdmonPuntos.do">MenuAdmonPuntosController
+				</prop>
+				<prop key="/menuAsignacionPuntos.do">AdmonAsignacionPuntosController
+				</prop>
+
+				<prop key="/consultaPerfiles.do">ConsultaPerfilesController
+				</prop>
+				<prop key="/detallePerfiles.do">DetallePerfilesController
+				</prop>
+
+				<prop key="/consultaMotivos.do">ConsultaMotivosController
+				</prop>
+				<prop key="/detalleMotivos.do">DetalleMotivosController
+				</prop>
+				<prop key="/lineasPruebaAsignacion.do">LineasPruebaAsignacionController
+				</prop>
+				<prop key="/agregaLineaPruebas.do">AgregaLineaPruebasController
+				</prop>
+				<prop key="/eliminaLineaPruebas.do">EliminaLineaPruebasController
+				</prop>
+				<!--Folio 130970-AAY Pantalla de Consulta Inbursa -->
+				<prop key="/muestraInbursa.do">MuestraInbursaController
+				</prop>
+				<prop key="/consultaInbursa.do">ConsultaInbursaController
+				</prop>
+				<prop key="/detalleInbursa.do">ConsultaDetalleInbursa</prop>
+				<!-- Certificados Claro Club -->
+				<prop key="menuCertificados.do">MenuCertificadosController</prop>
+				<prop key="/consultaPuntosCertificado.do">ConsultaPuntosCertificadoController</prop>
+				<prop key="/consultaDetalleCertificado.do">ConsultaCertificadoDetalleController</prop>
+				<prop key="/movimientosCertificado.do">MovimientosCertificadoController</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- objetos de control de FrameWork -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>
+	<bean id="handler"
+		class="com.telcel.gscrm.dccrm.ca.mvc.comun.LoggingMappingExceptionResolver">
+	</bean>
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<bean id="ValidaUsuario"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ValidaUsuarioController">
+		<property name="commandName" value="usuario" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.UsuarioIN" />
+		<property name="formView" value="/error/error" />
+		<property name="successView" value="/main/menuPrincipal" />
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<!-- Controllers de Puntitos -->
+	<bean id="ConsultaPuntitosDetalleController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaDetallePuntitosController">
+		<property name="commandName" value="telefono" />
+		<property name="commandClass" value="com.claro.transfer.TelefonoTO" />
+		<property name="formView" value="error/error" />
+		<property name="successView" value="puntitos/consulta/detalle/muestraDetalle" />
+	</bean>
+	<bean id="MenuPuntitosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.MenuPuntitosController" />
+	<bean id="ConsultaPuntitosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaPuntitosController" />
+	<bean id="ConsultaUsuarioController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaUsuarioController" />
+	<bean id="ConsultaPtoVtaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaPtoVtaController" />
+	<bean id="FramePtoVta"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.FramePtoVtaController" />
+	<bean id="ConsultaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaController" />
+	<bean id="ConsultaPuntosDetalleController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaPuntosDetalleController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="ConsultaProductosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaProductosController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="AlianzasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzasController" />
+	<bean id="MovimientosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.MovimientosController" />
+	<bean id="RedencionesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.RedencionesController" />
+	<bean id="RealizaRedencionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.RealizaRedencionController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="BuscaUsuarioController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.BuscaUsuarioController">
+		<property name="commandName" value="usuarioTO" />
+		<property name="commandClass" value="com.claro.transfer.UsuarioTO" />
+	</bean>
+	<bean id="UsuarioController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.UsuarioController">
+		<property name="commandName" value="usuarioTO" />
+		<property name="commandClass" value="com.claro.transfer.UsuarioTO" />
+		<property name="validator">
+			<bean
+				class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.validator.ValidaUsuario" />
+		</property>
+	</bean>
+	<bean id="PtosVtaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.PtosVtaController">
+		<property name="commandName" value="puntoVentaTO" />
+		<property name="commandClass" value="com.claro.transfer.PuntoVentaTO" />
+		<property name="formView" value="puntitos/consulta/ConsultaPtoVta" />
+		<property name="successView" value="puntitos/consulta/ConsultaPtoVta" />
+		<property name="validator">
+			<bean
+				class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.validator.ValidaPtosVta" />
+		</property>
+	</bean>
+	<bean id="DetallePtosVta"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.DetallePtosVta" />
+	<bean id="ConsultaPromociones"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaPromociones" />
+	<bean id="AgregaPromocionesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.AgregaPromociones">
+		<property name="successView" value="puntitos/consulta/ConsultaPromociones" />
+		<property name="formView" value="/error/error" />
+	</bean>
+	<bean id="ConsultaAgregaArchivos"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaArchivos" />
+	<bean id="ConsultaProcesaArchivos"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaProcesaArchivos" />
+	<bean id="ProcesaArchivosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ProcesaArchivosController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="ConsultaProcesaInbursa"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaProcesaInbursa" />
+	<!--  Pantalla Consulta Distribuidores JAPA 20/07/2011 Folio 93379 -->
+	<bean id="ConsultaPromocionesDistribuidores"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaPromocionesDistribuidores" />
+	<!--  Pantalla Procesa Membresías JSC Folio:115460  -->
+	<bean id="ConsultaProcesaMembresias"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaProcesaMembresias" />
+	<bean id="ProcesaArchivoMembresiaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ProcesaArchivoMembresiaController" />
+	<bean id="ConsultaCatalogoController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaCatalogoController" />
+	<bean id="EliminaPromocionesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.EliminaPromociones">
+		<property name="commandName" value="documentoTO" />
+		<property name="commandClass" value="com.claro.transfer.service.DocumentoTO" />
+		<property name="successView" value="puntitos/consulta/ConsultaPromociones" />
+		<property name="formView" value="/error/error" />
+	</bean>
+	<bean id="ConsultaPlanesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaPlanePromociones">
+		<property name="grupoProm" ref="catalogoGrupoPromocion" />
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="MenuPromocionesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.MenuPromocionesController" />
+	<!-- Controllers de Puntitos -->
+	<bean id="ConsultaPuntosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaPuntosController" />
+	<bean id="ConsultaMarcasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaMarcasController" />
+	<bean id="ValidaPlanController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ValidaPlanController" />
+	<!--  Modificaciones CA JAPA 22/07/2011 Folio 84048 y ZZZZZZ -->
+	<bean id="ConsultaPlanesRedencionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.redencion.multicotizador.ConsultaPlanesRedencionController" />
+	<bean id="ValidaPlanRedencionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.redencion.multicotizador.ValidaPlanRedencionController" />
+
+	<bean id="ConsultaModelosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaModelosController" />
+	<bean id="ImpresionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ImpresionController" />
+	<bean id="ValidaIvaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ValidaIvaController" />
+	<bean id="AdministracionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.controller.AdministracionController" />
+	<bean id="MenuAdministracionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.controller.MenuAdministracionController" />
+	<bean id="ActualizaPasswordController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.controller.ActualizaPasswordController">
+		<property name="commandName" value="usuario" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.UsuarioIN" />
+		<property name="formView" value="/jsp/administracion/actualizaPasswd" />
+		<property name="successView" value="/main/menuPrincipal" />
+	</bean>
+	<bean id="BuscaRedencionesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.BuscaRedencionesController" />
+	<bean id="BuscaBonoInbursaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.BuscaBonoInbursaController" />
+	<bean id="SalirController" class="com.telcel.gscrm.dccrm.ca.mvc.comun.SalirController" />
+	<bean id="ConsultaLineaPuntitos"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ConsultaLineaPuntitos">
+		<property name="commandName" value="telefono" />
+		<property name="commandClass" value="com.claro.transfer.TelefonoTO" />
+		<property name="formView" value="error/error" />
+		<property name="successView" value="puntitos/consulta/detalle/detallePuntitos" />
+	</bean>
+	<bean id="CancelaPuntitos"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.CancelaPuntitosController">
+		<property name="commandName" value="telefono" />
+		<property name="commandClass" value="com.claro.transfer.TelefonoTO" />
+		<property name="formView" value="error/error" />
+		<property name="successView" value="puntitos/consulta/consultaPuntitos" />
+		<property name="validator">
+			<bean
+				class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.validator.ValidaTelefono" />
+		</property>
+	</bean>
+	<bean id="ConsultaMembresiaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaMembresiaController" />
+	<bean id="GuardaMembresiaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.GuardaMembresiaController">
+		<property name="commandName" value="membresia" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.MembresiaIN" />
+		<property name="formView" value="/consulta/pages/membresia/membresiaGuardada" />
+		<property name="successView" value="/consulta/pages/membresia/membresiaGuardada" />
+	</bean>
+	<bean id="ConsultaPuntosMembresiaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaPuntosMembresiaController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="ConsultaRenunciaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaRenunciaController" />
+	<bean id="ConsultaPuntosRenunciaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaPuntosRenunciaController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="ConsultaRedencionesCancelaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaRedencionesCancelaController" />
+	<bean id="CancelaRedencionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.CancelaRedencionController">
+		<property name="commandName" value="CancelaIN" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.CancelaIN" />
+		<property name="formView" value="/consulta/pages/cancelaRedenciones" />
+		<property name="successView" value="/consulta/pages/cancelaRedenciones" />
+	</bean>
+	<bean id="TransferenciaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.transferencia.controller.TransferenciaController" />
+	<bean id="TransferenciaDetalleController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.transferencia.controller.TransferenciaDetalleController">
+		<property name="commandName" value="transferencia" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.TransferenciaIN" />
+		<property name="formView"
+			value="consulta/pages/transferencia/transferirPuntos" />
+		<property name="successView"
+			value="consulta/pages/transferencia/detalleTransferencia" />
+	</bean>
+	<bean id="AplicarTransferenciaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.transferencia.controller.AplicarTransferenciaController">
+		<property name="commandName" value="transferencia" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.TransferenciaIN" />
+		<property name="formView"
+			value="consulta/pages/transferencia/detalleTransferencia" />
+		<property name="successView"
+			value="consulta/pages/transferencia/resultadoTransferencia" />
+	</bean>
+	<bean id="AlianzasCancelaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzasCancelaController" />
+	<bean id="AlianzasAltaCambioController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzasAltaCambioController" />
+	<bean id="AlianzaBuscaCancelaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzaBuscaCancelaController">
+		<property name="commandName" value="telefono" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.TelefonoIN" />
+		<property name="formView" value="consulta/pages/alianzaAcancelar" />
+		<property name="successView" value="consulta/pages/alianzaAcancelar" />
+	</bean>
+	<bean id="ValidaAlianzaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ValidaAlianzaController"></bean>
+	<bean id="MuestraAlianzaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.MuestraAlianzaController"></bean>
+	<bean id="ActualizaAlianzaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ActualizaAlianzaController"></bean>
+	<bean id="CancelaAlianzaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.CancelaAlianzaController"></bean>
+	<bean id="AlianzaAplicaCancelaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzaAplicaCancelaController">
+		<property name="commandName" value="alianza" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.AlianzaIN" />
+		<property name="formView" value="consulta/pages/alianzasCancela" />
+		<property name="successView" value="consulta/pages/alianzaAcancelar" />
+	</bean>
+	<bean id="AlianzaCanjeController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzaCanjeController" />
+	<bean id="AgregaAlianzaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AgregaAlianzaController"></bean>
+	<bean id="MuestraAmexCanjeController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.MuestraAmexCanjeController"></bean>
+	<bean id="MuestraLiberarController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.MuestraLiberarController"></bean>
+	<bean id="ConfirmaCanjeController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConfirmaCanjeController"></bean>
+	<bean id="MuestraCertificadoController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.MuestraCertificadoController"></bean>
+
+	<bean id="AlianzaAplicaCanjeController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AlianzaAplicaCanjeController">
+		<property name="commandName" value="alianza" />
+		<property name="commandClass"
+			value="com.telcel.gscrm.dccrm.ca.mvc.input.AlianzaIN" />
+		<property name="formView" value="consulta/pages/alianzaCanje" />
+		<property name="successView" value="consulta/pages/alianzaCanje" />
+	</bean>
+	<bean id="AccionPuntosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AccionPuntosController" />
+	<bean id="AplicaAsignarPuntosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AplicaAsignarPuntosController"></bean>
+	<bean id="EliminarPuntosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.EliminarPuntosController" />
+	<bean id="ImpresionAlianzaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ImpresionAlianzaController"></bean>
+	<bean id="RetencionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.RetencionController"></bean>
+	<bean id="GenerarCertificadoLealtadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.GenerarCertificadoLealtadController"></bean>
+	<bean id="ConsultarCertificadoLealtadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.ConsultarCertificadoLealtadController"></bean>
+	<bean id="ImprimirCertificadoLealtadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.ImprimirCertificadoLealtadController"></bean>
+	<bean id="CancelarCertificadoLealtadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.CancelarCertificadoLealtadController"></bean>
+	<bean id="ValidaLineaCertificadoController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.ValidaLineaCertificadoController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="ActualizaFolioSapController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ActualizaFolioSapController"></bean>
+	<bean id="ActualizaFolioController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ActualizaFolioController"></bean>
+	<bean id="CancelaRetencionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.CancelaRetencionController"></bean>
+	<bean id="ConsultaEstadoCiudadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ConsultaEstadoCiudadController" />
+	<bean id="ValidaProductosTAController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ValidaProductosTAController">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="AlmacenaCertificadoLealtadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.retencion.controller.AlmacenaCertificadoLealtadController"></bean>
+	<bean id="ConsultaBeneficiosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.redencion.controller.ConsultaBeneficiosController"></bean>
+	<bean id="ConsultaBeneficiosMarcaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.redencion.controller.ConsultaBeneficiosMarcaController"></bean>
+	<bean id="ConsultaManualesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ManualesPromociones">
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="AvisosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.controller.AvisosController"></bean>
+	<bean id="AvisosAccionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.controller.AvisosAccionController"></bean>
+	<bean id="MarquesinaAvisosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.controller.MarquesinaAvisosController"></bean>
+	<bean id="ActualizaCatalogos"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.ActualizaCatalogos">
+		<property name="grupoProm" ref="catalogoGrupoPromocion" />
+	</bean>
+	<bean id="aseguraminetoIniController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.AseguramientoController"></bean>
+	<bean id="seguridadController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.SeguridadController">
+	</bean>
+	<bean id="perfilesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.PerfilesController"></bean>
+	<bean id="privilegiosPerfilesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.PrivilegiosPerfilesController">
+	</bean>
+	<bean id="privilegiosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.PrivilegiosController"></bean>
+	<bean id="privilegiosDetalleController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.PrivilegiosDetalleController">
+	</bean>
+	<bean id="actualizaPrivilegiosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.ActualizaPrivilegiosController"></bean>
+	<bean id="reportePerfilesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.seguridad.controller.ReportePerfilesController"></bean>
+	<bean id="reportesCirculoAzulController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.reportes.controller.ReportesCirculoAzulController"></bean>
+	<bean id="generaReporteCirculoAzulController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.reportes.controller.GeneraReporteCirculoAzulController"></bean>
+	<!--
+		Folio 114032 Asignacion de puntos por cancelacion de cuenta erronea
+-->
+	<bean id="AsignacionPorErrorAplicaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.AsignacionPorErrorAplicaController"></bean>
+	<bean id="lineasRestringidasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.LineasRestringidasController"></bean>
+	<bean id="cargaLineasRestringidasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.puntitos.controller.CargaLineasRestringidasController"></bean>
+	<!-- CANCELACION DE TRANSFERENCIA - JAPA 17/12/2012 Folio 555555 / -->
+	<bean id="CancelaTransferenciaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.transferencia.controller.CancelaTransferenciaController"></bean>
+	<bean id="ReporteLineasRestringidasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.controller.ReporteLineasRestringidasController"></bean>
+	<!-- MODULO ASIGNACION DE PUNTOS - JAPA 07/02/2013 Folio 121733 / -->
+	<bean id="MenuAdmonPuntosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.MenuAdmonPuntosController" />
+	<bean id="AdmonAsignacionPuntosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.AdmonAsignacionPuntosController" />
+
+	<bean id="ConsultaMotivosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.ConsultaMotivosController" />
+	<bean id="DetalleMotivosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.DetalleMotivosController" />
+
+	<bean id="ConsultaPerfilesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.ConsultaPerfilesController" />
+	<bean id="DetallePerfilesController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.DetallePerfilesController" />
+	<bean id="LineasPruebaAsignacionController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.LineasPruebaAsignacionController"></bean>
+	<bean id="AgregaLineaPruebasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.AgregaLineaPruebasController"></bean>
+	<bean id="EliminaLineaPruebasController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.administracion.puntos.asignacion.EliminaLineaPruebasController"></bean>
+	<!--Folio 130970-AAY Pantalla de Consulta Inbursa -->
+	<bean id="MuestraInbursaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.inbursa.controller.MuestraInbursaController"></bean>
+	<bean id="ConsultaInbursaController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.inbursa.controller.ConsultaInbursaController"></bean>
+	<bean id="ConsultaDetalleInbursa"
+		class="com.telcel.gscrm.dccrm.ca.mvc.inbursa.controller.ConsultaDetalleInbursa"></bean>
+	<!-- Certificados Claro Club -->
+	<bean id="MenuCertificadosController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.certificados.MenuCertificadosController" />
+	<bean id="ConsultaPuntosCertificadoController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.certificados.ConsultaPuntosCertificadoController" />
+	<bean id="ConsultaCertificadoDetalleController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.certificados.ConsultaCertificadoDetalleController" >
+		<property name="propiedades" ref="catalogoPropiedades" />
+	</bean>
+	<bean id="MovimientosCertificadoController"
+		class="com.telcel.gscrm.dccrm.ca.mvc.certificados.MovimientosCertificadoController" />
+</beans>

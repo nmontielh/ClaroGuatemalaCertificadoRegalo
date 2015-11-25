@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ConsultaInfoLineaServiceService WSDL service -->
+
+  <service name="ConsultaInfoLineaService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.ws.ca.dccrm.gscrm.telcel.com"/>
+      <parameter name="wsdlServiceElement" value="ConsultaInfoLineaServiceService"/>
+      <parameter name="schemaQualified" value="http://service.transfer.claro.com,http://service.ws.ca.dccrm.gscrm.telcel.com,http://exception.claro.com"/>
+      <parameter name="wsdlServicePort" value="ConsultaInfoLineaService"/>
+      <parameter name="className" value="com.telcel.gscrm.dccrm.ca.ws.service.ConsultaInfoLineaService"/>
+      <parameter name="wsdlPortType" value="ConsultaInfoLineaService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:retNS="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:rtns="http://service.transfer.claro.com" name="consultaInfoLinea" qname="operNS:consultaInfoLinea" returnQName="retNS:consultaInfoLineaReturn" returnType="rtns:TelefonoServiceTO" soapAction="">
+        <parameter xmlns:pns="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:telefono" type="tns:string"/>
+        <fault xmlns:fns="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:tns="http://exception.claro.com" name="CAException" qname="fns:fault" class="com.claro.exception.CAException" type="tns:CAException"/>
+      </operation>
+      <parameter name="allowedMethods" value="consultaInfoLinea"/>
+
+      <typeMapping xmlns:ns="http://exception.claro.com" qname="ns:CAException" type="java:com.claro.exception.CAException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://service.transfer.claro.com" qname="ns:TelefonoServiceTO" type="java:com.claro.transfer.service.TelefonoServiceTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

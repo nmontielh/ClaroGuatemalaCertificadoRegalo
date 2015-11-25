@@ -1,0 +1,367 @@
+.textonegro			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: normal; font-variant: normal; color: #000000}
+.textonegroBlod		{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; line-height: normal; color: #000000;}
+.textoredBlod		{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; line-height: normal; color: RED;}
+.textonegroBlodMed	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8px; font-style: normal; font-weight: bold; font-variant: normal; line-height: normal; color: #000000;}
+.textonegroBlodTrs	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; line-height: normal; color: #000000;}
+.textoazulBlodTrs	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; line-height: normal; color: BLUE;}
+.textorojoBlodTrs	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; line-height: normal; color: RED;}
+.healineblue1		{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; font-variant: normal; color: #E31D1A;}
+.healineblue1Med	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; color: #E31D1A;}
+.subtitulorojo		{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: RED}
+.linered			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: bold; font-variant: normal; color: white; background-color:#FF001A; text-align:center}
+.healinered			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; color: RED;}
+.healinenavy		{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; font-variant: normal; color:  #000080 ;}
+.textonegroBlodEnc	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; font-variant: normal; color: #000000;}
+
+.tablaHead			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; font-variant: normal; color: #FFFFFF; background-color: #147FB5}
+.tablaDetalle		{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; }
+.tablaDetalleCebra  {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; background-color: #C0E5F8}
+
+/*Nuevos estilos */
+.body{
+ 	bgcolor:"#ffffff";
+ 	marginwidth:"0";
+ 	marginheight:"0"; 	 
+ 	left: 15px;
+ 	top:15px;
+ 	bottom:15px;
+ 	position: absolute;
+ 	width: 95%; 	
+	font-family: arial; font-size: 11px; margin: 0px; padding: 0px;
+	background-image:url(../images/backgroundlight.gif);
+}
+
+.BloqueErrorEspera{
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; 
+    font-variant: normal; line-height: 120 px; color: RED; 
+    text-valign: center; text-align: center; border: medium; height:34px;vertical-align: middle;
+}
+	
+.transparent  
+{  
+   filter:alpha(opacity=60);   
+   -moz-opacity: 0.6;   
+   opacity: 0.6; 
+} 
+
+
+.botonActivo {
+	font-family: "Tahoma","Verdana";
+    font-weight: bold;
+    font-size: 10pt;
+    background-color: red; 
+    color: white;
+    height: 24px;
+	width: 130px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #6699ff; 
+    border-right-color: #6699ff;
+    border-bottom-color: #6699ff;
+	border-left-color: #6699ff;
+	padding-top: 2px; 
+	padding-bottom: 2px;
+	cursor:pointer;
+}
+
+.botonInactivo {
+	font-family: "Tahoma","Verdana";
+    font-weight: bold;
+    font-size: 10pt;
+    background-color: #ffe1e1;
+    color: red;
+    height: 24px;
+	width: 130px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: #6699ff;
+    border-right-color: #6699ff;
+    border-bottom-color: #6699ff;
+	border-left-color: #6699ff;
+	padding-top: 2px; 
+	padding-bottom: 2px;
+	cursor:pointer;		
+}
+
+
+.X3 td 	   { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: normal; font-variant: normal; line-height: normal; padding: 2; }
+
+.menu{
+	background-image:url(../images/backgroundlight.gif);
+	font-family: arial; 
+	font-size: 12px; 
+	margin: 0px; 
+	padding: 2px;	
+}
+
+.titulo{/*Estilo para los titulos de las paginas y del manual e instructivo 08Agosto2005*/
+	background-image:url(../images/pts_circulotit.gif);
+	color:#000000; text-valign:center; font: bold 24px 'Arial'; background-repeat: no-repeat;
+}
+
+.tituloBlanco{/*Estilo para los titulos de las paginas y del manual e instructivo 08Agosto2005*/
+	color:#FFFFFF; 
+	text-valign:center; 
+	font: bold 34px 'Arial'; 
+	background-repeat: no-repeat;
+}
+
+.tituloNegro{/*Estilo para los titulos de las paginas y del manual e instructivo 08Agosto2005*/
+	color:#000000; 
+	text-valign:center; 
+	font: bold 34px 'Arial'; 
+	background-repeat: no-repeat;
+}
+
+.subtitulo {
+	color:#FFC125; 
+	text-valign:center; 
+	font: bold 18px 'Arial';
+}
+
+.LinkOut{
+  font-family: Verdana, Arial, Helvetica, sans-serif; 
+  font-size: 10px; 
+  font-style: normal; 
+  font-weight: bold; 
+  font-variant: normal;
+  color: #FFFFFF;
+  cursor:hand;
+  background-color:#E31D1A;
+  text-decoration:none;
+  border: 2px outset;
+}
+
+.LinkIn{
+  font-family: Verdana, Arial, Helvetica, sans-serif; 
+  font-size: 10px; 
+  font-style: normal; 
+  font-weight: bold; 
+  font-variant: normal;
+  color: #FFFFFF;/*#FFE303*/
+  cursor:hand;
+  background-color: #EB5452;
+  text-decoration:none;
+  border: 2px inset;
+}
+.textodocumentacion
+{
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-weight: normal; 
+font-size: 12px;
+font-style: normal; 
+font-variant: normal;
+}
+
+.tabladocumentacion
+{
+background-image:url(../pts_images/backgroundlight.gif);
+background-color:WHITE;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-weight: normal; 
+font-size: 12px;
+font-style: normal; 
+font-variant: normal;
+}
+
+.filtro {
+	height: 18px;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color='#aaaacc', Direction=135, Strength=2);
+}
+
+.menuActivo{
+	font-family: "Century Gothic","Verdana";
+    font-weight: bold;
+    font-size: 16 px;
+    background-color: white; 
+	color: #4d7097;
+    height: 28px;
+	width: 100%;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 0px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-top-color: #aaaacc;
+    border-right-color: #aaaacc;
+	border-left-color: #aaaacc;
+	padding-top: 0px; 
+	padding-bottom: 0px;
+	padding-left: 0px; 
+	padding-right: 0px;
+	cursor:pointer;		
+	text-align: center;	
+	valign: middle;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color='#aaaacc', Direction=90, Strength=2);
+}
+.menuInactivo{
+	font-family: "Century Gothic", "Verdana";
+    font-weight: bold;
+    font-size: 13 px;
+    background-color: #dddddd;
+	color: #535353;
+    height: 19px;
+	width: 100%;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-bottom-style: solid;
+    border-bottom-color: #aaaacc;
+	padding-top: 0px; 
+	padding-bottom: 0px;
+	cursor:pointer;	
+	text-align: center;
+	valign: middle;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color='#aaaacc', Direction=90, Strength=2);
+}
+
+
+.TarjetaDetalle{
+		background-color:transparent;
+		OVERFLOW: hidden;
+		WIDTH: 100%;
+		POSITION: relative;
+		HEIGHT: 500px;
+		border:#4d7097 1px solid;		
+		display: none;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-bottom: 0px;		
+		border-top-width: 0px;	
+}
+
+.TarjetaDetalleSinBorde{
+		background-color:transparent;
+		OVERFLOW: hidden;
+		WIDTH: 100%;
+		POSITION: relative;
+		HEIGHT: 500px;
+		border:none;		
+		display: none;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-bottom: 0px;		
+		border-top-width: 0px;	
+}
+
+/*tipos de listas*/
+.arabic_numbers { list-style-type: arabic-numbers }
+.lower_alpha 	{ list-style-type: lower-alpha; margin-bottom: 1em;}
+.upper_alpha 	{ list-style-type: upper-alpha }
+.lower_roman 	{ list-style-type: lower-roman }
+.upper_roman 	{ list-style-type: upper-roman }
+.sublist		{ list-style-type: circle;}
+
+.Bloque{	
+    BORDER-RIGHT: #4d7097 1px solid;
+    BORDER-TOP: #4d7097 1px solid;    
+    BORDER-LEFT: #4d7097 1px solid;
+    BORDER-BOTTOM: #4d7097 1px solid;
+    FONT-FAMILY: "Verdana", "Helvetica", "sans-serif"
+}
+.InputText {
+	font-family: Tahoma,sans-serif;
+	font-size: 8pt;
+	border: solid 1px #6699ff;
+	line-height: 20px;
+	height: 20px;
+	padding-top: 0pt;
+	padding-right-value: 0.2em;
+	padding-bottom: 0pt;
+	padding-left-value: 0.2em;
+	text-transform: uppercase;
+	width: 150px;	    
+}
+.BloqueBlanco{
+	BORDER-RIGHT: #4d7097 1px solid;
+	PADDING-RIGHT: 10px;
+	BORDER-TOP: #4d7097 1px solid;
+	PADDING-LEFT: 10px;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 11px;
+	BACKGROUND: #f4f9ff;
+	PADDING-BOTTOM: 15px;
+	MARGIN: 10px;
+	BORDER-LEFT: #4d7097 1px solid;
+	LINE-HEIGHT: 1.8em;
+	PADDING-TOP: 15px;
+	BORDER-BOTTOM: #4d7097 1px solid;
+	FONT-FAMILY: "Verdana", "Helvetica", "sans-serif"
+}
+
+.submit{ 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 12px; 
+	font-style: normal; 
+	font-weight: bold; 
+	font-variant: normal;
+	color: #64619c;
+	cursor:hand;
+	background-color: #a8caf4;
+	text-decoration: none;
+	text-align: center;
+	margin: auto;
+	border-style: outset;
+	border-width: 2px;
+	border-color: white
+}
+.textRadio{  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 12px; 
+	font-style: normal; 
+	font-weight: bold; 
+	font-variant: normal; 
+	color: #551A8B;
+}
+
+.buttonC{
+		border: 1px solid #74C7F0;
+		font-size: 11px;
+		color: #000000;		
+		background-color: #C0E5F8;
+		}
+.InputTextC{
+	font-family: Tahoma,sans-serif;
+	font-size: 8pt;
+	border: solid 1px #6699ff;
+	line-height: 20px;
+	height: 20px;
+	padding-top: 0pt;
+	padding-right-value: 0.2em;
+	padding-bottom: 0pt;
+	padding-left-value: 0.2em;
+	width: 350px;	    
+}
+.selectC{
+    font-family: Tahoma, Verdana, Arial; 
+    font-size: 12px;
+    width: 120px;
+	}	
+.textArea{
+	font-family: Tahoma,sans-serif;
+	font-size: 9pt;
+	border: solid 1px #6699ff;	
+	padding-top: 0pt;
+	padding-right-value: 0.2em;
+	padding-bottom: 0pt;
+	padding-left-value: 0.2em;
+	width: 97%;
+	height: 30px;
+}	
