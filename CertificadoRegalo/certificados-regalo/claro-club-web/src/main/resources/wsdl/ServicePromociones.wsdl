@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://promociones.service.ws.ca.gscrm.telcel.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://promociones.service.ws.ca.gscrm.telcel.com" xmlns:intf="http://promociones.service.ws.ca.gscrm.telcel.com" xmlns:tns1="http://transfer.ca.dccrm.gscrm.telcel.com" xmlns:tns2="http://exception.ca.dccrm.gscrm.telcel.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://promociones.service.ws.ca.gscrm.telcel.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://transfer.ca.dccrm.gscrm.telcel.com"/>
+   <import namespace="http://exception.ca.dccrm.gscrm.telcel.com"/>
+   <element name="asignacion">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="xsd:string"/>
+      <element name="puntosAsignar" type="xsd:int"/>
+      <element name="ip" type="xsd:string"/>
+      <element name="comentario" type="xsd:string"/>
+      <element name="region" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="asignacionResponse">
+    <complexType>
+     <sequence>
+      <element name="asignacionReturn" type="tns1:MensajeTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns2:CAException"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://transfer.ca.dccrm.gscrm.telcel.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.ca.dccrm.gscrm.telcel.com"/>
+   <complexType name="MensajeTO">
+    <sequence>
+     <element name="idMensaje" type="xsd:int"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception.ca.dccrm.gscrm.telcel.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://transfer.ca.dccrm.gscrm.telcel.com"/>
+   <complexType name="CAException">
+    <sequence>
+     <element name="errorId" type="xsd:int"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="CAException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="asignacionRequest">
+
+      <wsdl:part element="impl:asignacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="asignacionResponse">
+
+      <wsdl:part element="impl:asignacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServicePromociones">
+
+      <wsdl:operation name="asignacion">
+
+         <wsdl:input message="impl:asignacionRequest" name="asignacionRequest"/>
+
+         <wsdl:output message="impl:asignacionResponse" name="asignacionResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServicePromocionesSoapBinding" type="impl:ServicePromociones">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="asignacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="asignacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="asignacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServicePromocionesService">
+
+      <wsdl:port binding="impl:ServicePromocionesSoapBinding" name="ServicePromociones">
+
+         <wsdlsoap:address location="http://localhost:9080/CirculoAzulWeb/services/ServicePromociones"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

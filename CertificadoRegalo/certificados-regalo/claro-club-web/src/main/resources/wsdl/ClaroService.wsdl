@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.ws.claro.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.ws.claro.com" xmlns:intf="http://service.ws.claro.com" xmlns:tns1="http://exception.claro.com" xmlns:tns2="http://certificados.transfer.claro.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.ws.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://certificados.transfer.claro.com"/>
+   <import namespace="http://exception.claro.com"/>
+   <element name="consultaSaldo">
+    <complexType>
+     <sequence>
+      <element name="numeroCertificado" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaSaldoResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaSaldoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:ClaroException"/>
+   <element name="activaTarjetaCertificado">
+    <complexType>
+     <sequence>
+      <element name="numeroTarjeta" type="xsd:string"/>
+      <element name="montoCertificado" type="xsd:long"/>
+      <element name="idUsuario" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="activaTarjetaCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="activaTarjetaCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="aplicaCertificado">
+    <complexType>
+     <sequence>
+      <element name="movimientoCertificadoTO" type="tns2:MovimientoCertificadoTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="aplicaCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="aplicaCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelaTarjetaCertificado">
+    <complexType>
+     <sequence>
+      <element name="numeroCertificado" type="xsd:string"/>
+      <element name="idUsuario" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelaTarjetaCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="cancelaTarjetaCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelaAplicaCertificado">
+    <complexType>
+     <sequence>
+      <element name="folio" type="xsd:string"/>
+      <element name="idUsuario" type="xsd:string"/>
+      <element name="idpuntoVta" type="xsd:string"/>
+      <element name="referencia" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelaAplicaCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="cancelaAplicaCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaMovimientosTajetaCertificado">
+    <complexType>
+     <sequence>
+      <element name="numeroCertificado" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaMovimientosTajetaCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaMovimientosTajetaCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaTajeta">
+    <complexType>
+     <sequence>
+      <element name="numeroTarjeta" type="xsd:string"/>
+      <element name="montoCertificado" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaTajetaResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaTajetaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaSaldoCertificado">
+    <complexType>
+     <sequence>
+      <element name="numeroTarjeta" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaSaldoCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaSaldoCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaMovimientosCertificado">
+    <complexType>
+     <sequence>
+      <element name="numeroTarjeta" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaMovimientosCertificadoResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaMovimientosCertificadoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaTajetaVendida">
+    <complexType>
+     <sequence>
+      <element name="numeroTarjeta" type="xsd:string"/>
+      <element name="montoCertificado" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaTajetaVendidaResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaTajetaVendidaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://certificados.transfer.claro.com"/>
+   <complexType name="ClaroException">
+    <sequence>
+     <element name="errorId" nillable="true" type="xsd:string"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://certificados.transfer.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.claro.com"/>
+   <complexType name="MovimientoCertificadoTO">
+    <sequence>
+     <element name="estatus" nillable="true" type="xsd:string"/>
+     <element name="fechaOperacion" nillable="true" type="xsd:string"/>
+     <element name="idMensaje" nillable="true" type="xsd:string"/>
+     <element name="idMotivo" nillable="true" type="xsd:string"/>
+     <element name="idUsuario" nillable="true" type="xsd:string"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="numeroCertificado" nillable="true" type="xsd:string"/>
+     <element name="numeroTarjeta" nillable="true" type="xsd:string"/>
+     <element name="puntoVenta" nillable="true" type="xsd:string"/>
+     <element name="referencia" nillable="true" type="xsd:string"/>
+     <element name="valorAnterior" type="xsd:float"/>
+     <element name="valorAplicado" type="xsd:float"/>
+     <element name="valorRestante" type="xsd:float"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="cancelaAplicaCertificadoResponse">
+
+      <wsdl:part element="impl:cancelaAplicaCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaTajetaRequest">
+
+      <wsdl:part element="impl:consultaTajeta" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelaTarjetaCertificadoRequest">
+
+      <wsdl:part element="impl:cancelaTarjetaCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMovimientosCertificadoRequest">
+
+      <wsdl:part element="impl:consultaMovimientosCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activaTarjetaCertificadoResponse">
+
+      <wsdl:part element="impl:activaTarjetaCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMovimientosCertificadoResponse">
+
+      <wsdl:part element="impl:consultaMovimientosCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activaTarjetaCertificadoRequest">
+
+      <wsdl:part element="impl:activaTarjetaCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="aplicaCertificadoRequest">
+
+      <wsdl:part element="impl:aplicaCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="aplicaCertificadoResponse">
+
+      <wsdl:part element="impl:aplicaCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaTajetaResponse">
+
+      <wsdl:part element="impl:consultaTajetaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelaTarjetaCertificadoResponse">
+
+      <wsdl:part element="impl:cancelaTarjetaCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelaAplicaCertificadoRequest">
+
+      <wsdl:part element="impl:cancelaAplicaCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaSaldoCertificadoRequest">
+
+      <wsdl:part element="impl:consultaSaldoCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaSaldoResponse">
+
+      <wsdl:part element="impl:consultaSaldoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMovimientosTajetaCertificadoResponse">
+
+      <wsdl:part element="impl:consultaMovimientosTajetaCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaTajetaVendidaResponse">
+
+      <wsdl:part element="impl:consultaTajetaVendidaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaTajetaVendidaRequest">
+
+      <wsdl:part element="impl:consultaTajetaVendida" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaSaldoRequest">
+
+      <wsdl:part element="impl:consultaSaldo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ClaroException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMovimientosTajetaCertificadoRequest">
+
+      <wsdl:part element="impl:consultaMovimientosTajetaCertificado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaSaldoCertificadoResponse">
+
+      <wsdl:part element="impl:consultaSaldoCertificadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ClaroService">
+
+      <wsdl:operation name="consultaSaldo">
+
+         <wsdl:input message="impl:consultaSaldoRequest" name="consultaSaldoRequest"/>
+
+         <wsdl:output message="impl:consultaSaldoResponse" name="consultaSaldoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activaTarjetaCertificado">
+
+         <wsdl:input message="impl:activaTarjetaCertificadoRequest" name="activaTarjetaCertificadoRequest"/>
+
+         <wsdl:output message="impl:activaTarjetaCertificadoResponse" name="activaTarjetaCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="aplicaCertificado">
+
+         <wsdl:input message="impl:aplicaCertificadoRequest" name="aplicaCertificadoRequest"/>
+
+         <wsdl:output message="impl:aplicaCertificadoResponse" name="aplicaCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelaTarjetaCertificado">
+
+         <wsdl:input message="impl:cancelaTarjetaCertificadoRequest" name="cancelaTarjetaCertificadoRequest"/>
+
+         <wsdl:output message="impl:cancelaTarjetaCertificadoResponse" name="cancelaTarjetaCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelaAplicaCertificado">
+
+         <wsdl:input message="impl:cancelaAplicaCertificadoRequest" name="cancelaAplicaCertificadoRequest"/>
+
+         <wsdl:output message="impl:cancelaAplicaCertificadoResponse" name="cancelaAplicaCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaMovimientosTajetaCertificado">
+
+         <wsdl:input message="impl:consultaMovimientosTajetaCertificadoRequest" name="consultaMovimientosTajetaCertificadoRequest"/>
+
+         <wsdl:output message="impl:consultaMovimientosTajetaCertificadoResponse" name="consultaMovimientosTajetaCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaTajeta">
+
+         <wsdl:input message="impl:consultaTajetaRequest" name="consultaTajetaRequest"/>
+
+         <wsdl:output message="impl:consultaTajetaResponse" name="consultaTajetaResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaSaldoCertificado">
+
+         <wsdl:input message="impl:consultaSaldoCertificadoRequest" name="consultaSaldoCertificadoRequest"/>
+
+         <wsdl:output message="impl:consultaSaldoCertificadoResponse" name="consultaSaldoCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaMovimientosCertificado">
+
+         <wsdl:input message="impl:consultaMovimientosCertificadoRequest" name="consultaMovimientosCertificadoRequest"/>
+
+         <wsdl:output message="impl:consultaMovimientosCertificadoResponse" name="consultaMovimientosCertificadoResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaTajetaVendida">
+
+         <wsdl:input message="impl:consultaTajetaVendidaRequest" name="consultaTajetaVendidaRequest"/>
+
+         <wsdl:output message="impl:consultaTajetaVendidaResponse" name="consultaTajetaVendidaResponse"/>
+
+         <wsdl:fault message="impl:ClaroException" name="ClaroException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ClaroServiceSoapBinding" type="impl:ClaroService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultaSaldo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaSaldoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaSaldoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activaTarjetaCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="activaTarjetaCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="activaTarjetaCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="aplicaCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="aplicaCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="aplicaCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelaTarjetaCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelaTarjetaCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelaTarjetaCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelaAplicaCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelaAplicaCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelaAplicaCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaMovimientosTajetaCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaMovimientosTajetaCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaMovimientosTajetaCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaTajeta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaTajetaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaTajetaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaSaldoCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaSaldoCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaSaldoCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaMovimientosCertificado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaMovimientosCertificadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaMovimientosCertificadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaTajetaVendida">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaTajetaVendidaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaTajetaVendidaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ClaroException">
+
+            <wsdlsoap:fault name="ClaroException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ClaroServiceService">
+
+      <wsdl:port binding="impl:ClaroServiceSoapBinding" name="ClaroService">
+
+         <wsdlsoap:address location="http://localhost:9080/ClaroClubWeb/services/ClaroService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

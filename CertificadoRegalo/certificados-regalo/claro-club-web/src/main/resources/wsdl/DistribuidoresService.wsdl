@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://sisact.service.ws.ca.dccrm.gscrm.telcel.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://sisact.service.ws.ca.dccrm.gscrm.telcel.com" xmlns:intf="http://sisact.service.ws.ca.dccrm.gscrm.telcel.com" xmlns:tns1="http://service.transfer.claro.com" xmlns:tns2="http://exception.claro.com" xmlns:tns3="http://transfer.claro.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://sisact.service.ws.ca.dccrm.gscrm.telcel.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.claro.com"/>
+   <import namespace="http://transfer.claro.com"/>
+   <import namespace="http://service.transfer.claro.com"/>
+   <element name="consultaPuntos">
+    <complexType>
+     <sequence>
+      <element name="telefono" type="xsd:string"/>
+      <element name="cuenta" type="xsd:string"/>
+      <element name="region" type="xsd:int"/>
+      <element name="plan" type="xsd:string"/>
+      <element name="fzaVentas" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaPuntosResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaPuntosReturn" type="tns1:TelefonoServiceTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns2:CAException"/>
+   <element name="consultaPlanes">
+    <complexType>
+     <sequence>
+      <element name="region" type="xsd:int"/>
+      <element name="tecnologia" type="xsd:string"/>
+      <element name="modalidad" type="xsd:string"/>
+      <element name="mixto" type="xsd:string"/>
+      <element name="fzaVenta" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaPlanesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="consultaPlanesReturn" type="tns3:CatalogoTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaMarcas">
+    <complexType>
+     <sequence>
+      <element name="region" type="xsd:int"/>
+      <element name="idPlan" type="xsd:string"/>
+      <element name="fzaVentas" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaMarcasResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="consultaMarcasReturn" type="tns3:CatalogoTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaModelos">
+    <complexType>
+     <sequence>
+      <element name="marca" type="xsd:string"/>
+      <element name="region" type="xsd:int"/>
+      <element name="idGrupoPromocion" type="xsd:int"/>
+      <element name="fzaVentas" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaModelosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="consultaModelosReturn" type="tns3:CatalogoTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaProductos">
+    <complexType>
+     <sequence>
+      <element name="telefonoServiceTO" type="tns1:TelefonoServiceTO"/>
+      <element name="puntosRedimir" type="xsd:int"/>
+      <element name="marca" type="xsd:string"/>
+      <element name="modelo" type="xsd:string"/>
+      <element name="fzaVentas" type="xsd:string"/>
+      <element name="isReservacionAnticipada" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaProductosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="consultaProductosReturn" type="tns3:ProductosTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFolioReservacion">
+    <complexType/>
+   </element>
+   <element name="consultaFolioReservacionResponse">
+    <complexType/>
+   </element>
+   <element name="consultaFolios">
+    <complexType>
+     <sequence>
+      <element name="telefono" type="xsd:string"/>
+      <element name="cuenta" type="xsd:string"/>
+      <element name="fzaVenta" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaFoliosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="consultaFoliosReturn" type="tns1:ReservacionServiceTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelaFolio">
+    <complexType>
+     <sequence>
+      <element name="folio" type="xsd:string"/>
+      <element name="fzaVentas" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cancelaFolioResponse">
+    <complexType>
+     <sequence>
+      <element name="cancelaFolioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="aplicaRedencionSisact">
+    <complexType>
+     <sequence>
+      <element name="telefonoServiceTO" type="tns1:TelefonoServiceTO"/>
+      <element name="folio" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="aplicaRedencionSisactResponse">
+    <complexType>
+     <sequence>
+      <element name="aplicaRedencionSisactReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizaApartado">
+    <complexType>
+     <sequence>
+      <element name="telefonoServiceTO" type="tns1:TelefonoServiceTO"/>
+      <element name="productosTO" type="tns3:ProductosTO"/>
+      <element name="planNuevo" type="xsd:string"/>
+      <element name="comentario" type="xsd:string"/>
+      <element name="fzaVenta" type="xsd:string"/>
+      <element name="Tecnologia" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="realizaApartadoResponse">
+    <complexType>
+     <sequence>
+      <element name="realizaApartadoReturn" type="tns1:ReservacionServiceTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMovimientosDetalle">
+    <complexType>
+     <sequence>
+      <element name="cuenta" type="xsd:string"/>
+      <element name="secuencia" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMovimientosDetalleResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getMovimientosDetalleReturn" type="tns1:MovimientoServiceTO"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.transfer.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.claro.com"/>
+   <import namespace="http://transfer.claro.com"/>
+   <complexType name="TelefonoServiceTO">
+    <sequence>
+     <element name="SPromFacturaAV" nillable="true" type="xsd:string"/>
+     <element name="addCareg" nillable="true" type="xsd:string"/>
+     <element name="addendNvo" type="xsd:int"/>
+     <element name="addendumM2K" nillable="true" type="xsd:string"/>
+     <element name="banMixto" nillable="true" type="xsd:string"/>
+     <element name="banRedime" type="xsd:int"/>
+     <element name="bonoEquipo" type="xsd:int"/>
+     <element name="ciclo" nillable="true" type="xsd:string"/>
+     <element name="claseCredito" nillable="true" type="xsd:string"/>
+     <element name="cuenta" nillable="true" type="xsd:string"/>
+     <element name="cuentaPadre" nillable="true" type="xsd:string"/>
+     <element name="distReserva" nillable="true" type="xsd:string"/>
+     <element name="estCobranza" nillable="true" type="xsd:string"/>
+     <element name="estatusTel" nillable="true" type="xsd:string"/>
+     <element name="fecFactura" nillable="true" type="xsd:string"/>
+     <element name="fecVencer" nillable="true" type="xsd:string"/>
+     <element name="fecVencer1" nillable="true" type="xsd:string"/>
+     <element name="fecVencer2" nillable="true" type="xsd:string"/>
+     <element name="fecVencidos" nillable="true" type="xsd:string"/>
+     <element name="fechaAddendumM2K" nillable="true" type="xsd:string"/>
+     <element name="fechaAlta" nillable="true" type="xsd:string"/>
+     <element name="fechaAltaM2K" nillable="true" type="xsd:string"/>
+     <element name="fechaFolioReservaCF" nillable="true" type="xsd:string"/>
+     <element name="fechaSuspension" nillable="true" type="xsd:string"/>
+     <element name="formaRedencion" nillable="true" type="xsd:string"/>
+     <element name="idGrupo" nillable="true" type="xsd:string"/>
+     <element name="idMensaje" type="xsd:int"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="mesesCareg" nillable="true" type="xsd:string"/>
+     <element name="modalidad" nillable="true" type="xsd:string"/>
+     <element name="motivo" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element name="planM2K" nillable="true" type="xsd:string"/>
+     <element name="planNuevo" nillable="true" type="xsd:string"/>
+     <element name="ptosStatus" nillable="true" type="xsd:string"/>
+     <element name="ptsAntiguedad" type="xsd:int"/>
+     <element name="ptsAntiguedadCF" nillable="true" type="xsd:string"/>
+     <element name="ptsBonoEquipo" type="xsd:int"/>
+     <element name="ptsBonoEquipoCF" nillable="true" type="xsd:string"/>
+     <element name="ptsDisponibles" type="xsd:int"/>
+     <element name="ptsDisponiblesCF" nillable="true" type="xsd:string"/>
+     <element name="ptsExcedentes" type="xsd:int"/>
+     <element name="ptsExcedentesCF" nillable="true" type="xsd:string"/>
+     <element name="ptsPorVencer" type="xsd:int"/>
+     <element name="ptsPorVencer1" type="xsd:int"/>
+     <element name="ptsPorVencer1CF" nillable="true" type="xsd:string"/>
+     <element name="ptsPorVencer2" type="xsd:int"/>
+     <element name="ptsPorVencer2CF" nillable="true" type="xsd:string"/>
+     <element name="ptsPorVencerCF" nillable="true" type="xsd:string"/>
+     <element name="ptsPromocion" type="xsd:int"/>
+     <element name="ptsPromocionCF" nillable="true" type="xsd:string"/>
+     <element name="ptsRedimidos" type="xsd:int"/>
+     <element name="ptsRedimidosCF" nillable="true" type="xsd:string"/>
+     <element name="ptsRedimidosSF" type="xsd:int"/>
+     <element name="ptsRenta" type="xsd:int"/>
+     <element name="ptsRentaCF" nillable="true" type="xsd:string"/>
+     <element name="ptsSubasta" type="xsd:int"/>
+     <element name="ptsSubastaCF" nillable="true" type="xsd:string"/>
+     <element name="ptsTransferidos" type="xsd:int"/>
+     <element name="ptsVencidos" type="xsd:int"/>
+     <element name="ptsVencidosCF" nillable="true" type="xsd:string"/>
+     <element name="region" type="xsd:int"/>
+     <element name="secuencia" type="xsd:int"/>
+     <element name="segmento" nillable="true" type="xsd:string"/>
+     <element name="sistema" nillable="true" type="xsd:string"/>
+     <element name="tecnologia" nillable="true" type="xsd:string"/>
+     <element name="telefono" nillable="true" type="xsd:string"/>
+     <element name="tipoProm" nillable="true" type="xsd:string"/>
+     <element name="tipoRedencion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReservacionServiceTO">
+    <complexContent>
+     <extension base="tns3:MensajeTO">
+      <sequence>
+       <element name="addendumM2K" nillable="true" type="xsd:string"/>
+       <element name="addendumNuevo" nillable="true" type="xsd:string"/>
+       <element name="aplicaEP" nillable="true" type="xsd:string"/>
+       <element name="aplicaPromocionGap" nillable="true" type="xsd:string"/>
+       <element name="bonoAltoValor" type="xsd:int"/>
+       <element name="bonoDescuentoGap" nillable="true" type="xsd:string"/>
+       <element name="bonoRoext" type="xsd:int"/>
+       <element name="bonosGap" type="xsd:int"/>
+       <element name="comentario" nillable="true" type="xsd:string"/>
+       <element name="cuenta" nillable="true" type="xsd:string"/>
+       <element name="descripcion" nillable="true" type="xsd:string"/>
+       <element name="descuento" nillable="true" type="xsd:string"/>
+       <element name="estatus" nillable="true" type="xsd:string"/>
+       <element name="estatusCobranza" nillable="true" type="xsd:string"/>
+       <element name="fechaAddendumM2K" nillable="true" type="xsd:string"/>
+       <element name="fechaAltaUser" nillable="true" type="xsd:string"/>
+       <element name="fechaExpiracion" nillable="true" type="xsd:string"/>
+       <element name="fechaOperacion" nillable="true" type="xsd:string"/>
+       <element name="folio" nillable="true" type="xsd:string"/>
+       <element name="formaRedencion" nillable="true" type="xsd:string"/>
+       <element name="fuerzaVenta" nillable="true" type="xsd:string"/>
+       <element name="idPerfil" nillable="true" type="xsd:string"/>
+       <element name="idProducto" nillable="true" type="xsd:string"/>
+       <element name="idPromocionGap" type="xsd:int"/>
+       <element name="idPromocionGapCA" type="xsd:int"/>
+       <element name="marca" nillable="true" type="xsd:string"/>
+       <element name="modelo" nillable="true" type="xsd:string"/>
+       <element name="motivo" nillable="true" type="xsd:string"/>
+       <element name="nombrePromocionGap" nillable="true" type="xsd:string"/>
+       <element name="planM2K" nillable="true" type="xsd:string"/>
+       <element name="planNuevo" nillable="true" type="xsd:string"/>
+       <element name="precio" nillable="true" type="xsd:string"/>
+       <element name="precioIVA" nillable="true" type="xsd:string"/>
+       <element name="productoM2KGap" nillable="true" type="xsd:string"/>
+       <element name="puntoVenta" nillable="true" type="xsd:string"/>
+       <element name="puntosDisponibles" type="xsd:int"/>
+       <element name="puntosSobrantes" type="xsd:int"/>
+       <element name="puntosaRedimir" type="xsd:long"/>
+       <element name="region" type="xsd:int"/>
+       <element name="secuencia" type="xsd:int"/>
+       <element name="telefono" nillable="true" type="xsd:string"/>
+       <element name="tipoPromocion" nillable="true" type="xsd:string"/>
+       <element name="tipoRedencion" nillable="true" type="xsd:string"/>
+       <element name="usuario" nillable="true" type="xsd:string"/>
+       <element name="valorPesos" type="xsd:int"/>
+       <element name="valorPuntos" type="xsd:int"/>
+       <element name="verPromocionGap" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MovimientoServiceTO">
+    <sequence>
+     <element name="bonoPromocion" nillable="true" type="xsd:string"/>
+     <element name="cuenta" nillable="true" type="xsd:string"/>
+     <element name="facturacion" nillable="true" type="xsd:string"/>
+     <element name="fechaAdendum" nillable="true" type="xsd:string"/>
+     <element name="fechaOperacion" nillable="true" type="xsd:string"/>
+     <element name="linea" nillable="true" type="xsd:string"/>
+     <element name="movimiento" nillable="true" type="xsd:string"/>
+     <element name="numPuntos" type="xsd:int"/>
+     <element name="numPuntosExc" type="xsd:int"/>
+     <element name="referencia" nillable="true" type="xsd:string"/>
+     <element name="secuencia" nillable="true" type="xsd:string"/>
+     <element name="totalAjustes" type="xsd:int"/>
+     <element name="usuario" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://transfer.claro.com"/>
+   <import namespace="http://service.transfer.claro.com"/>
+   <complexType name="CAException">
+    <sequence>
+     <element name="errorId" type="xsd:int"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://transfer.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.claro.com"/>
+   <import namespace="http://service.transfer.claro.com"/>
+   <complexType name="CatalogoTO">
+    <sequence>
+     <element name="descripcion" nillable="true" type="xsd:string"/>
+     <element name="idVariable" nillable="true" type="xsd:string"/>
+     <element name="valor" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductosTO">
+    <sequence>
+     <element name="aplicaEP" nillable="true" type="xsd:string"/>
+     <element name="aplicaPaqueteSMS" nillable="true" type="xsd:string"/>
+     <element name="aplicaPromocionGap" nillable="true" type="xsd:string"/>
+     <element name="bonoDescuentoGap" nillable="true" type="xsd:string"/>
+     <element name="bonosAltoValor" type="xsd:int"/>
+     <element name="bonosGap" type="xsd:int"/>
+     <element name="bonosInbursa" type="xsd:int"/>
+     <element name="bonosMarca" type="xsd:int"/>
+     <element name="bonosRoext" type="xsd:int"/>
+     <element name="descripcion" nillable="true" type="xsd:string"/>
+     <element name="descripcionDescuento" nillable="true" type="xsd:string"/>
+     <element name="descuento" nillable="true" type="xsd:decimal"/>
+     <element name="descuentoInbursa" nillable="true" type="xsd:decimal"/>
+     <element name="descuentoInbursaRestante" nillable="true" type="xsd:decimal"/>
+     <element name="descuentoMarca" nillable="true" type="xsd:decimal"/>
+     <element name="descuentoMarcaRestante" nillable="true" type="xsd:decimal"/>
+     <element name="difPesos" type="xsd:int"/>
+     <element name="fzaVentas" nillable="true" type="xsd:string"/>
+     <element name="iccid" nillable="true" type="xsd:string"/>
+     <element name="idProducto" nillable="true" type="xsd:string"/>
+     <element name="idPromocionGap" type="xsd:int"/>
+     <element name="idPromocionGapCA" type="xsd:int"/>
+     <element name="indicador" nillable="true" type="xsd:string"/>
+     <element name="marca" nillable="true" type="xsd:string"/>
+     <element name="material" nillable="true" type="xsd:string"/>
+     <element name="modelo" nillable="true" type="xsd:string"/>
+     <element name="nombrePromocionGap" nillable="true" type="xsd:string"/>
+     <element name="numeroSerieP" nillable="true" type="xsd:string"/>
+     <element name="numeroSerieT" nillable="true" type="xsd:string"/>
+     <element name="plan" nillable="true" type="xsd:string"/>
+     <element name="precio" nillable="true" type="xsd:decimal"/>
+     <element name="precioActivacion" nillable="true" type="xsd:decimal"/>
+     <element name="precioActivacionCF" nillable="true" type="xsd:string"/>
+     <element name="precioBD" nillable="true" type="xsd:decimal"/>
+     <element name="precioConFormato" nillable="true" type="xsd:string"/>
+     <element name="precioDescuento" nillable="true" type="xsd:decimal"/>
+     <element name="precioIva" nillable="true" type="xsd:decimal"/>
+     <element name="precioIvaConFormato" nillable="true" type="xsd:string"/>
+     <element name="precioLista" nillable="true" type="xsd:decimal"/>
+     <element name="precioListaCF" nillable="true" type="xsd:string"/>
+     <element name="productoM2KGap" nillable="true" type="xsd:string"/>
+     <element name="ptosARedimir" type="xsd:long"/>
+     <element name="puntos" nillable="true" type="xsd:string"/>
+     <element name="puntosSobrantes" nillable="true" type="xsd:string"/>
+     <element name="sobBonoEquipo" type="xsd:int"/>
+     <element name="tecnologia" nillable="true" type="xsd:string"/>
+     <element name="tipoPromocion" nillable="true" type="xsd:string"/>
+     <element name="url" nillable="true" type="xsd:string"/>
+     <element name="valorMillas" nillable="true" type="xsd:long"/>
+     <element name="valorPuntos" type="xsd:int"/>
+     <element name="valorPuntosF" nillable="true" type="xsd:string"/>
+     <element name="valorPuntosTmp" type="xsd:int"/>
+     <element name="verPromocionGap" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="MensajeTO">
+    <sequence>
+     <element name="idMensaje" type="xsd:int"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="realizaApartadoResponse">
+
+      <wsdl:part element="impl:realizaApartadoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="aplicaRedencionSisactResponse">
+
+      <wsdl:part element="impl:aplicaRedencionSisactResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaPuntosRequest">
+
+      <wsdl:part element="impl:consultaPuntos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaFolioReservacionResponse">
+
+      <wsdl:part element="impl:consultaFolioReservacionResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelaFolioRequest">
+
+      <wsdl:part element="impl:cancelaFolio" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaPlanesResponse">
+
+      <wsdl:part element="impl:consultaPlanesResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMarcasResponse">
+
+      <wsdl:part element="impl:consultaMarcasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelaFolioResponse">
+
+      <wsdl:part element="impl:cancelaFolioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaPlanesRequest">
+
+      <wsdl:part element="impl:consultaPlanes" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaMarcasRequest">
+
+      <wsdl:part element="impl:consultaMarcas" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMovimientosDetalleRequest">
+
+      <wsdl:part element="impl:getMovimientosDetalle" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaFoliosResponse">
+
+      <wsdl:part element="impl:consultaFoliosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaFolioReservacionRequest">
+
+      <wsdl:part element="impl:consultaFolioReservacion" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="realizaApartadoRequest">
+
+      <wsdl:part element="impl:realizaApartado" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="aplicaRedencionSisactRequest">
+
+      <wsdl:part element="impl:aplicaRedencionSisact" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaPuntosResponse">
+
+      <wsdl:part element="impl:consultaPuntosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaModelosResponse">
+
+      <wsdl:part element="impl:consultaModelosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaProductosResponse">
+
+      <wsdl:part element="impl:consultaProductosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CAException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaProductosRequest">
+
+      <wsdl:part element="impl:consultaProductos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMovimientosDetalleResponse">
+
+      <wsdl:part element="impl:getMovimientosDetalleResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaFoliosRequest">
+
+      <wsdl:part element="impl:consultaFolios" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaModelosRequest">
+
+      <wsdl:part element="impl:consultaModelos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DistribuidoresService">
+
+      <wsdl:operation name="consultaPuntos">
+
+         <wsdl:input message="impl:consultaPuntosRequest" name="consultaPuntosRequest"/>
+
+         <wsdl:output message="impl:consultaPuntosResponse" name="consultaPuntosResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaPlanes">
+
+         <wsdl:input message="impl:consultaPlanesRequest" name="consultaPlanesRequest"/>
+
+         <wsdl:output message="impl:consultaPlanesResponse" name="consultaPlanesResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaMarcas">
+
+         <wsdl:input message="impl:consultaMarcasRequest" name="consultaMarcasRequest"/>
+
+         <wsdl:output message="impl:consultaMarcasResponse" name="consultaMarcasResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaModelos">
+
+         <wsdl:input message="impl:consultaModelosRequest" name="consultaModelosRequest"/>
+
+         <wsdl:output message="impl:consultaModelosResponse" name="consultaModelosResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaProductos">
+
+         <wsdl:input message="impl:consultaProductosRequest" name="consultaProductosRequest"/>
+
+         <wsdl:output message="impl:consultaProductosResponse" name="consultaProductosResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaFolioReservacion">
+
+         <wsdl:input message="impl:consultaFolioReservacionRequest" name="consultaFolioReservacionRequest"/>
+
+         <wsdl:output message="impl:consultaFolioReservacionResponse" name="consultaFolioReservacionResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaFolios">
+
+         <wsdl:input message="impl:consultaFoliosRequest" name="consultaFoliosRequest"/>
+
+         <wsdl:output message="impl:consultaFoliosResponse" name="consultaFoliosResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelaFolio">
+
+         <wsdl:input message="impl:cancelaFolioRequest" name="cancelaFolioRequest"/>
+
+         <wsdl:output message="impl:cancelaFolioResponse" name="cancelaFolioResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="aplicaRedencionSisact">
+
+         <wsdl:input message="impl:aplicaRedencionSisactRequest" name="aplicaRedencionSisactRequest"/>
+
+         <wsdl:output message="impl:aplicaRedencionSisactResponse" name="aplicaRedencionSisactResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizaApartado">
+
+         <wsdl:input message="impl:realizaApartadoRequest" name="realizaApartadoRequest"/>
+
+         <wsdl:output message="impl:realizaApartadoResponse" name="realizaApartadoResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMovimientosDetalle">
+
+         <wsdl:input message="impl:getMovimientosDetalleRequest" name="getMovimientosDetalleRequest"/>
+
+         <wsdl:output message="impl:getMovimientosDetalleResponse" name="getMovimientosDetalleResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DistribuidoresServiceSoapBinding" type="impl:DistribuidoresService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultaPuntos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaPuntosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaPuntosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaPlanes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaPlanesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaPlanesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaMarcas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaMarcasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaMarcasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaModelos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaModelosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaModelosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaProductos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaProductosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaProductosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaFolioReservacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaFolioReservacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaFolioReservacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="consultaFolios">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaFoliosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaFoliosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelaFolio">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelaFolioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelaFolioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="aplicaRedencionSisact">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="aplicaRedencionSisactRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="aplicaRedencionSisactResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="realizaApartado">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="realizaApartadoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="realizaApartadoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMovimientosDetalle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMovimientosDetalleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMovimientosDetalleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DistribuidoresServiceService">
+
+      <wsdl:port binding="impl:DistribuidoresServiceSoapBinding" name="DistribuidoresService">
+
+         <wsdlsoap:address location="http://localhost:9081/ClaroClubWeb/services/DistribuidoresService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

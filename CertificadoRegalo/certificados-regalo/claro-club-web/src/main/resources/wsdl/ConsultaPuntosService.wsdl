@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:intf="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns:tns1="http://service.transfer.claro.com" xmlns:tns2="http://exception.claro.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.ws.ca.dccrm.gscrm.telcel.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.claro.com"/>
+   <import namespace="http://service.transfer.claro.com"/>
+   <element name="consultaPuntos">
+    <complexType>
+     <sequence>
+      <element name="region" type="xsd:int"/>
+      <element name="telefono" type="xsd:string"/>
+      <element name="tipoRed" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultaPuntosResponse">
+    <complexType>
+     <sequence>
+      <element name="consultaPuntosReturn" type="tns1:TelefonoServiceTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns2:CAException"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.transfer.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.claro.com"/>
+   <complexType name="TelefonoServiceTO">
+    <sequence>
+     <element name="SPromFacturaAV" nillable="true" type="xsd:string"/>
+     <element name="addCareg" nillable="true" type="xsd:string"/>
+     <element name="addendNvo" type="xsd:int"/>
+     <element name="addendumM2K" nillable="true" type="xsd:string"/>
+     <element name="banMixto" nillable="true" type="xsd:string"/>
+     <element name="banRedime" type="xsd:int"/>
+     <element name="bonoEquipo" type="xsd:int"/>
+     <element name="ciclo" nillable="true" type="xsd:string"/>
+     <element name="claseCredito" nillable="true" type="xsd:string"/>
+     <element name="cuenta" nillable="true" type="xsd:string"/>
+     <element name="cuentaPadre" nillable="true" type="xsd:string"/>
+     <element name="distReserva" nillable="true" type="xsd:string"/>
+     <element name="estCobranza" nillable="true" type="xsd:string"/>
+     <element name="estatusTel" nillable="true" type="xsd:string"/>
+     <element name="fecFactura" nillable="true" type="xsd:string"/>
+     <element name="fecVencer" nillable="true" type="xsd:string"/>
+     <element name="fecVencer1" nillable="true" type="xsd:string"/>
+     <element name="fecVencer2" nillable="true" type="xsd:string"/>
+     <element name="fecVencidos" nillable="true" type="xsd:string"/>
+     <element name="fechaAddendumM2K" nillable="true" type="xsd:string"/>
+     <element name="fechaAlta" nillable="true" type="xsd:string"/>
+     <element name="fechaAltaM2K" nillable="true" type="xsd:string"/>
+     <element name="fechaFolioReservaCF" nillable="true" type="xsd:string"/>
+     <element name="fechaSuspension" nillable="true" type="xsd:string"/>
+     <element name="formaRedencion" nillable="true" type="xsd:string"/>
+     <element name="idGrupo" nillable="true" type="xsd:string"/>
+     <element name="idMensaje" type="xsd:int"/>
+     <element name="mensaje" nillable="true" type="xsd:string"/>
+     <element name="mesesCareg" nillable="true" type="xsd:string"/>
+     <element name="modalidad" nillable="true" type="xsd:string"/>
+     <element name="motivo" nillable="true" type="xsd:string"/>
+     <element name="nombre" nillable="true" type="xsd:string"/>
+     <element name="planM2K" nillable="true" type="xsd:string"/>
+     <element name="planNuevo" nillable="true" type="xsd:string"/>
+     <element name="ptosStatus" nillable="true" type="xsd:string"/>
+     <element name="ptsAntiguedad" type="xsd:int"/>
+     <element name="ptsAntiguedadCF" nillable="true" type="xsd:string"/>
+     <element name="ptsBonoEquipo" type="xsd:int"/>
+     <element name="ptsBonoEquipoCF" nillable="true" type="xsd:string"/>
+     <element name="ptsDisponibles" type="xsd:int"/>
+     <element name="ptsDisponiblesCF" nillable="true" type="xsd:string"/>
+     <element name="ptsExcedentes" type="xsd:int"/>
+     <element name="ptsExcedentesCF" nillable="true" type="xsd:string"/>
+     <element name="ptsPorVencer" type="xsd:int"/>
+     <element name="ptsPorVencer1" type="xsd:int"/>
+     <element name="ptsPorVencer1CF" nillable="true" type="xsd:string"/>
+     <element name="ptsPorVencer2" type="xsd:int"/>
+     <element name="ptsPorVencer2CF" nillable="true" type="xsd:string"/>
+     <element name="ptsPorVencerCF" nillable="true" type="xsd:string"/>
+     <element name="ptsPromocion" type="xsd:int"/>
+     <element name="ptsPromocionCF" nillable="true" type="xsd:string"/>
+     <element name="ptsRedimidos" type="xsd:int"/>
+     <element name="ptsRedimidosCF" nillable="true" type="xsd:string"/>
+     <element name="ptsRedimidosSF" type="xsd:int"/>
+     <element name="ptsRenta" type="xsd:int"/>
+     <element name="ptsRentaCF" nillable="true" type="xsd:string"/>
+     <element name="ptsSubasta" type="xsd:int"/>
+     <element name="ptsSubastaCF" nillable="true" type="xsd:string"/>
+     <element name="ptsTransferidos" type="xsd:int"/>
+     <element name="ptsVencidos" type="xsd:int"/>
+     <element name="ptsVencidosCF" nillable="true" type="xsd:string"/>
+     <element name="region" type="xsd:int"/>
+     <element name="secuencia" type="xsd:int"/>
+     <element name="segmento" nillable="true" type="xsd:string"/>
+     <element name="sistema" nillable="true" type="xsd:string"/>
+     <element name="tecnologia" nillable="true" type="xsd:string"/>
+     <element name="telefono" nillable="true" type="xsd:string"/>
+     <element name="tipoProm" nillable="true" type="xsd:string"/>
+     <element name="tipoRedencion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception.claro.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.transfer.claro.com"/>
+   <complexType name="CAException">
+    <sequence>
+     <element name="errorId" type="xsd:int"/>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="consultaPuntosResponse">
+
+      <wsdl:part element="impl:consultaPuntosResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="CAException">
+
+      <wsdl:part element="impl:fault" name="fault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultaPuntosRequest">
+
+      <wsdl:part element="impl:consultaPuntos" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ConsultaPuntosService">
+
+      <wsdl:operation name="consultaPuntos">
+
+         <wsdl:input message="impl:consultaPuntosRequest" name="consultaPuntosRequest"/>
+
+         <wsdl:output message="impl:consultaPuntosResponse" name="consultaPuntosResponse"/>
+
+         <wsdl:fault message="impl:CAException" name="CAException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ConsultaPuntosServiceSoapBinding" type="impl:ConsultaPuntosService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultaPuntos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultaPuntosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultaPuntosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CAException">
+
+            <wsdlsoap:fault name="CAException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ConsultaPuntosServiceService">
+
+      <wsdl:port binding="impl:ConsultaPuntosServiceSoapBinding" name="ConsultaPuntosService">
+
+         <wsdlsoap:address location="http://localhost:9081/ClaroClubWeb/services/ConsultaPuntosService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
