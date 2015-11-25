@@ -8,5 +8,6 @@
   	<module>claro-ejb</module>
   	<module>claro-client-ejb</module>
   	<module>claro-model</module>
+  	<module>claro-club-web</module>
   </modules>
 </project> 
