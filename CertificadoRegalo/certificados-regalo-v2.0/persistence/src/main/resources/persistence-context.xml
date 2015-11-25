@@ -6,21 +6,44 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-	<import resource="persistence-base-context.xml" />
 
-	<bean id="sessionFactory" parent="sessionFactoryBase">
-		<!-- Definicion de interceptores de auditoria, este interceptor se encuentra 
-			en el modulo de audit como componente -->
+	<!-- Session Factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+		<property name="dataSource">
+
+			<ref bean="dataSource" />
+
+		</property>
+
+		<property name="annotatedPackages" value="com.claro.gml.certificados" />
+		<property name="packagesToScan" value="com.claro.gml.certificados" />
+
+
+		<property name="configLocations">
+			<list>
+				<!-- Configuracion de propiedades de hibernate -->
+				<value>classpath:hibernate.cfg.xml</value>
+			</list>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>certificados-hql.hbm.xml</value>
+				<value>certificados-sql.hbm.xml</value>
+			</list>
+		</property>
+
 	</bean>
 
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
-		<qualifier value="mayaTM" />
+		<qualifier value="certificadosTM" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<context:component-scan base-package="mx.omnitracs.maya.persistence.dao" />
+	<context:component-scan base-package="com.claro.gml.certificados.persistence.dao" />
 </beans>

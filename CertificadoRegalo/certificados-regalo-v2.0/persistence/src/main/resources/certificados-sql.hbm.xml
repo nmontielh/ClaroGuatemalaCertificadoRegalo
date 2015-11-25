@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping auto-import="true">
+
+<!-- 
+	<sql-query name="findEventsWithShipperByClientIdAndReceivedDates">
+		<![CDATA[
+			select e.* from unit u
+				inner join device d on d.idunit = u.idunit
+				inner join event e on e.iddevice = d.iddevice
+				where u.idclient = ?
+				and e.receivedate between ? and ?
+			union all
+			select e.* from shipperconf sh 
+				inner join shipperconf_unitgroup shu on sh.idshipperconf = shu.idshipperconf
+				inner join unitgroup ug on ug.idunitgroup = shu.idunitgoup 
+				inner join unit_unitgroup uug on ug.idunitgroup = uug.idunitgroup 
+				inner join device d on d.idunit = uug.idunit
+				inner join event e on e.iddevice = d.iddevice
+				where idclientshipper = ? and e.receivedate between ? and ?
+		]]> 
+	</sql-query>
+-->
+
+</hibernate-mapping>

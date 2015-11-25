@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
-@ContextConfiguration(locations = { "classpath:persistence-context.xml" })
+@ContextConfiguration(locations = { "classpath:dbms-connect-context.xml", "classpath:persistence-context.xml" })
 public class ConfTesting extends AbstractTestNGSpringContextTests {
 
 	private static Logger logger = LoggerFactory.getLogger(ConfTesting.class);

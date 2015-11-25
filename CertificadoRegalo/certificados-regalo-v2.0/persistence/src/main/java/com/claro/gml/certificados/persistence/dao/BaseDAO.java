@@ -26,8 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
  * 
  */
 
-@Repository
-@Transactional("mayaTM")
+@Repository("certificadosDAO")
+@Transactional("certificadosTM")
 public class BaseDAO {
 
 	private Logger logger = LoggerFactory.getLogger(BaseDAO.class);

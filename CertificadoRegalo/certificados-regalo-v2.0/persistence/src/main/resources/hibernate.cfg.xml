@@ -8,11 +8,7 @@
 		<!-- Archivo de configuracion del hibernate -->
 
 		<!-- propiedades del dbms -->
-		<property name="hibernate.connection.driver_class">org.postgis.DriverWrapper</property>
-		<!-- <property name="hibernate.connection.driver_class">org.postgresql.Driver</property> -->
-		<!-- Dialect Postgis (Implica tambien PostgreSQLDialect) -->
-		<property name="hibernate.dialect">org.hibernate.spatial.dialect.postgis.PostgisDialect</property>
-		<!-- <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property> -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
 
 		<!-- propiedades del hibernate -->
 
@@ -26,18 +22,6 @@
 		<property name="hibernate.default_batch_fetch_size">8</property>
 		<property name="hibernate.bytecode.use_reflection_optimizer">true</property>
 		<property name="hibernate.search.autoregister_listeners">false</property>
-
-		<!-- Configuraciones de infinispan stand alone -->
-
-		<property name="hibernate.cache.use_second_level_cache">true</property>
-		<property name="hibernate.cache.use_query_cache">true</property>
-
-		<!-- Configuraciones standalone para pruebas unitarias -->
-
-
-		<property name="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</property>
-		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.infinispan.InfinispanRegionFactory</property>
-
 
 	</session-factory>
 
