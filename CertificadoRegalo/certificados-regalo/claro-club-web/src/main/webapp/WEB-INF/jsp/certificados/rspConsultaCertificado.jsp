@@ -171,6 +171,7 @@
         </table>
         
         <c:if test="${telefonoTO.mensaje!=null}">
+        
         <div>
         	<center>
         	<table>        		

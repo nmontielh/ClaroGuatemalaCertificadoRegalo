@@ -1,4 +1,4 @@
-<!-- Begin
+//<!-- Begin 
 //slider's width
 var swidth=350
 
@@ -9,7 +9,7 @@ var sheight=72
 var sspeed=1
 
 var singletext=new Array()
-singletext[0]='<div align="center"><font face=Arial size=2 color="#00BFFF"><b>Scroll de texto multiple</b><br>Tamaño, Velocidad, Estilo <b>ajustable.</b><br>Este mensaje usa <b><u>Hyperlinks</u></b></div></FONT>'
+singletext[0]='<div align="center"><font face=Arial size=2 color="#00BFFF"><b>Scroll de texto multiple</b><br>Tamaï¿½o, Velocidad, Estilo <b>ajustable.</b><br>Este mensaje usa <b><u>Hyperlinks</u></b></div></FONT>'
 	if (singletext.length>1)
 		i=1
 	else
