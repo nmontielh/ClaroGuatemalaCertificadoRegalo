@@ -28,5 +28,14 @@
 		<session-timeout>60</session-timeout>
 	</session-config>
 
+	<!-- Recursos JNDI -->
+	<resource-ref>
+		<description>DataSource to Oracle</description>
+		<res-ref-name>jdbc/datasource/certificadosDS</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+
 
 </web-app>
