@@ -7,12 +7,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
-	<aop:aspectj-autoproxy />
-
-	<context:component-scan base-package="com.claro.ws.service,
-	com.claro.gml.certificados.persistence.dao,
+	<context:component-scan base-package="com.claro.gml.certificados.persistence.dao,
 	com.claro.gml.certificados.services,
-	com.claro.gml.certificados.facade,	
-	com.claro.aspects" />
+	com.claro.gml.certificados.facade" />
 
 </beans>
