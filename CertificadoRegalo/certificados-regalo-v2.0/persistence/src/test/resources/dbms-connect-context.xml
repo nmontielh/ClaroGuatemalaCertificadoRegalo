@@ -10,19 +10,26 @@
 	<context:property-placeholder location="classpath:connections.properties" />
 
 	<!-- DataSource -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
 
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.user}" />
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" 
+		destroy-method="close"> <property name="driverClass" value="${driver}" /> 
+		<property name="jdbcUrl" value="${jdbc.url}" /> <property name="user" value="${jdbc.user}" 
+		/> <property name="password" value="${jdbc.password}" /> <property name="acquireIncrement" 
+		value="${c3p0.acquireIncrement}" /> <property name="minPoolSize" value="${c3p0.minPoolSize}" 
+		/> <property name="maxPoolSize" value="${c3p0.maxPoolSize}" /> <property 
+		name="maxIdleTime" value="${c3p0.maxIdleTime}" /> <property name="idleConnectionTestPeriod" 
+		value="10800" /> </bean> -->
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 
-		<!-- these are C3P0 properties -->
-		<property name="acquireIncrement" value="${c3p0.acquireIncrement}" />
-		<property name="minPoolSize" value="${c3p0.minPoolSize}" />
-		<property name="maxPoolSize" value="${c3p0.maxPoolSize}" />
-		<property name="maxIdleTime" value="${c3p0.maxIdleTime}" />
 
 	</bean>
+
 
 </beans>
