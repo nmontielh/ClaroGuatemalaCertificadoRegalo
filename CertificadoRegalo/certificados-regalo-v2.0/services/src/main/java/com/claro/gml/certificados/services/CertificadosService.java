@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.claro.gml.certificados.persistence.dao.BaseDAO;
+import com.claro.gml.persistence.model.CcTblmovimientocertificado;
 
 @Repository
 public class CertificadosService {
@@ -15,8 +16,12 @@ public class CertificadosService {
 	@Autowired
 	private BaseDAO dao;
 
-	public void print(String algo) {
-		log.info("input [{}]", algo);
+	public CcTblmovimientocertificado findMovtoCert(String numcertificado){
+		
+		dao.findObjectByQuery("", Object[]{numcertificado}, String.t, cl);
+		
+		
+		return null;
 	}
 
 }

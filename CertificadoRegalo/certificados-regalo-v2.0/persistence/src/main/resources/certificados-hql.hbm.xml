@@ -3,13 +3,14 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-<!-- 
-	<query name="getCommandConfByDeviceCommand">select c
-		from CommandDevicemodel c
-		where
-		c.command.idcommand = ? and
-		c.devicemodel.idmodeldevice = ?
+	<!-- <query name="getCommandConfByDeviceCommand">select c from CommandDevicemodel 
+		c where c.command.idcommand = ? and c.devicemodel.idmodeldevice = ? </query> -->
+
+	<query name="findMovCertByNumCertif">
+	<![CDATA[
+		from CcTblmovimientocertificado
+	
+	]]>
 	</query>
--->
 
 </hibernate-mapping>

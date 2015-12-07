@@ -17,8 +17,8 @@
 
 		</property>
 
-		<property name="annotatedPackages" value="com.claro.gml.certificados" />
-		<property name="packagesToScan" value="com.claro.gml.certificados" />
+		<property name="annotatedPackages" value="com.claro.gml.persistence.model" />
+		<property name="packagesToScan" value="com.claro.gml.persistence.model" />
 
 
 		<property name="configLocations">
