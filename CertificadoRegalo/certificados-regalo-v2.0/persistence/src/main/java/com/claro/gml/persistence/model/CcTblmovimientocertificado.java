@@ -2,6 +2,7 @@ package com.claro.gml.persistence.model;
 // Generated Dec 3, 2015 6:51:56 PM by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class CcTblmovimientocertificado implements java.io.Serializable {
 	private BigDecimal valoranterior;
 	private BigDecimal valorrestante;
 	private String referencia;
-
+		
 	public CcTblmovimientocertificado() {
 	}
 

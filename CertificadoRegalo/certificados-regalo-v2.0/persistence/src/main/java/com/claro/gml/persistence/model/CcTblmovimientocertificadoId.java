@@ -11,8 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CcTblmovimientocertificadoId implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L; 
-	
+	private static final long serialVersionUID = 1L;
+
 	private String folio;
 	private String numcertificado;
 	private String numtarjeta;

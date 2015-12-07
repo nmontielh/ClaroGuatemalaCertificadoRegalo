@@ -1,5 +1,7 @@
 package com.claro.transfer.certificados.utils;
 
+import java.util.List;
+
 import com.claro.transfer.certificados.constants.ErrorCatalog;
 import com.claro.transfer.certificados.constants.SucessCatalog;
 import com.claro.transfer.certificados.response.ActivaTarjeta;
@@ -7,7 +9,7 @@ import com.claro.transfer.certificados.response.CancelaTarjetaCertificado;
 import com.claro.transfer.certificados.response.ConsultaMovimientosCertificado;
 import com.claro.transfer.certificados.response.ConsultaSaldoCertificado;
 
-public class Printer {
+public class StringOutputTransform {
 
 	private static String SEPARATOR = "|";
 
@@ -86,6 +88,30 @@ public class Printer {
 
 	}
 
+	/**
+	 * @see Obtiene la representacion en cadena de un arreglo de
+	 *      ConsultaMovimientosCertificado
+	 * @param movtos
+	 * @return
+	 */
+	public static String toString(List<ConsultaMovimientosCertificado> movtos) {
+
+		StringBuffer buffer = new StringBuffer();
+
+		for (ConsultaMovimientosCertificado movto : movtos) {
+			String result = toString(movto);
+			buffer.append(result);
+		}
+
+		return buffer.toString();
+	}
+
+	/**
+	 * @see Obtiene la representacion en cadena separado por | del registro de
+	 *      ConsultaMovimientosCertificado
+	 * @param movto
+	 * @return
+	 */
 	public static String toString(ConsultaMovimientosCertificado movto) {
 
 		StringBuilder builder = new StringBuilder();
@@ -111,6 +137,7 @@ public class Printer {
 		builder.append(value(movto.getValorRestante()));
 		builder.append(SEPARATOR);
 		builder.append(value(movto.getReferencia()));
+		builder.append(SEPARATOR);
 
 		return builder.toString();
 
