@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.type.IntegerType;
+import org.hibernate.type.StringType;
 import org.hibernate.type.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import com.claro.gml.certificados.persistence.dao.BaseDAO;
 import com.claro.gml.certificados.transforms.CertificadosTransform;
 import com.claro.gml.persistence.model.CcTblmovimientocertificado;
-import com.claro.transfer.certificados.request.MovimientoCertificadoTO;
 import com.claro.transfer.certificados.response.ConsultaMovimientosCertificado;
 
 @Repository
@@ -33,7 +33,7 @@ public class CertificadosService {
 	 */
 	public List<ConsultaMovimientosCertificado> findMovtoCert(String numcertificado) {
 
-		Type[] types = { IntegerType.INSTANCE };
+		Type[] types = { StringType.INSTANCE };
 
 		List<CcTblmovimientocertificado> movtos = new ArrayList<>();
 
