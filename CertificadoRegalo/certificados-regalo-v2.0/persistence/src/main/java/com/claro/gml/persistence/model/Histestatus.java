@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "HISTESTATUS", schema = "CERTREG")
 public class Histestatus implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private HistestatusId id;
 
 	public Histestatus() {

@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatareaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private byte idarea;
 	private String descripcion;
 	private Boolean activo;

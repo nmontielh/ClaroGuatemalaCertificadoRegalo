@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FlujosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idestatus;
 	private String estatussig;
 	private String idsec;

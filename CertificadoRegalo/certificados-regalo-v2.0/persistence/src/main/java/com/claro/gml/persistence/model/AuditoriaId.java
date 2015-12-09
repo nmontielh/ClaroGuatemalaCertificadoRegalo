@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AuditoriaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idMovimiento;
 	private Integer idusuario;
 	private Integer idtipomovimiento;

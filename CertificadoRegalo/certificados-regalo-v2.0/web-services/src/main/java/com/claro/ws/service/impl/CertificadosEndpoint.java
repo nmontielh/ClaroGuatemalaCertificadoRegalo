@@ -9,7 +9,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.claro.exception.ClaroServiceException;
 import com.claro.exception.ExceptionUtils;
-import com.claro.gml.certificados.facade.CertificadosFacade;
+import com.claro.gml.certificados.facade.ICertificadosFacade;
 import com.claro.transfer.certificados.exception.BussinesException;
 import com.claro.transfer.certificados.request.MovimientoCertificadoTO;
 import com.claro.ws.service.ICertificadosEndpoint;
@@ -20,7 +20,7 @@ public class CertificadosEndpoint extends SpringBeanAutowiringSupport implements
 	private static Logger log = LoggerFactory.getLogger(CertificadosEndpoint.class);
 
 	@Autowired
-	private CertificadosFacade facade;
+	private ICertificadosFacade facade;
 
 	@Override
 	public String activaTarjetaCertificado(String numeroTarjeta, long montoCertificado, String idUsuario)

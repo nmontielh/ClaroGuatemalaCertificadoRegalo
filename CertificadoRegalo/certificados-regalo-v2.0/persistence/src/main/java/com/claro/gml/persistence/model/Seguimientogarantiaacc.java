@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "SEGUIMIENTOGARANTIAACC", schema = "CERTREG")
 public class Seguimientogarantiaacc implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private SeguimientogarantiaaccId id;
 
 	public Seguimientogarantiaacc() {

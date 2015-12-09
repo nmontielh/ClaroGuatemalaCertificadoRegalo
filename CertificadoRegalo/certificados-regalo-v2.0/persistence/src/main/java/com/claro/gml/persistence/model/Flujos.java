@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "FLUJOS", schema = "CERTREG")
 public class Flujos implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private FlujosId id;
 
 	public Flujos() {

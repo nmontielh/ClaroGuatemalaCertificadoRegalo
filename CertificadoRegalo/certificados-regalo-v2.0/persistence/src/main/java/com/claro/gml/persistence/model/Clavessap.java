@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "CLAVESSAP", schema = "CERTREG")
 public class Clavessap implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private ClavessapId id;
 
 	public Clavessap() {

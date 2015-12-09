@@ -6,12 +6,14 @@ public enum ErrorCatalog {
 	BUSSINES_ERROR,
 	UNEXPECTED_ERROR("XX"),
 	//Errores para la activacion tarjeta
+	NO_EXISTE_USUARIO("03","No se pueden activar certificados ya que usuario generico no existe"),
 	TARJETA_VENDIDA ("03", "La tarjeta: XXXXXXXXXXXXXXXX ya fue vendida"), 
 	NO_EXISTE_TARJETA("03","No existe la tarjeta: XXXXXXXXXXXXXXXX a Activar o el monto: YYY es invalido"),
 	NUM_CERTIFICADO_REQUERIDO("01","El numero de certificado es requerido"),
+	NUM_TARJETA_REQUERIDO("01","El numero de tarjeta es requerido"),
 	MONTO_MAYOR_0("01","El monto del certificado debe ser mayor a 0"),
 	USUARIO_REQUERIDO("01","El usuario es requerido"),
-	OTROS("07","otros"),
+	OTROS("07","otros (Error) : [EEEEEEEEEE]"),
 	//Errores para la cancelacion de activacion
 	NO_EXISTE_ACTIVACION_CERTIFICADO("02","No existe activacion para el certificado"),
 	CERTIFICADO_UTILIZADO("01","El certificado ha sido utilizado y no puede ser cancelado"),
@@ -22,8 +24,8 @@ public enum ErrorCatalog {
 	//Errorres para consulta de movto
 	NO_EXISTEN_MOVTOS_CERT("08","NO EXISTEN MOVIMIENTOS DEL CERTIFICADO"),
 	//Errores en aplica certificado
-	SALDO_INSUFICIENTE("05","No cuenta con saldo suficiente, saldo"),
-	CERTIFICADO_EXPIRADO("06","El certificado ha expirado, fecha de expiración: FECHA"),
+	SALDO_INSUFICIENTE("05","No cuenta con saldo suficiente: [SSSSSRRRRR]"),
+	CERTIFICADO_EXPIRADO("06","El certificado ha expirado, fecha de expiración: [FECHAEXP]"),
 	CERTIFICADO_CANCELADO("3","Error, el certificado esta cancelado"),	
 	NO_EXISTE_ACTIVACION_TARJETA("01","No existe activación para la tarjeta"),
 	//Exception de cancelacion
@@ -58,5 +60,12 @@ public enum ErrorCatalog {
 	public String getMessage(){
 		return this.message;
 	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
 
 }

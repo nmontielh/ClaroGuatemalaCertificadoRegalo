@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatsmaterialId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String cvematerial;
 	private String cvemarca;
 	private String cvetipoproducto;

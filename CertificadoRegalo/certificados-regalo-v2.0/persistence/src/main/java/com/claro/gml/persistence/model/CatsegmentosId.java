@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatsegmentosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String cveoficinadeventas;
 	private String segmento;
 	private Short rangoinicial;

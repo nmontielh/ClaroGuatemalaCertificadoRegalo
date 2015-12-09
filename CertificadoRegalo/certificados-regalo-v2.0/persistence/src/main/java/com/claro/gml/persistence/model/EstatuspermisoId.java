@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EstatuspermisoId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idestatus;
 	private int idpermiso;
 	private Boolean activo;

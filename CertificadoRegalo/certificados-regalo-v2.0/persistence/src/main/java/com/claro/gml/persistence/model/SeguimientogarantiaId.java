@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SeguimientogarantiaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String folio;
 	private Integer idestatusalmacen;
 	private String tipoenvio;

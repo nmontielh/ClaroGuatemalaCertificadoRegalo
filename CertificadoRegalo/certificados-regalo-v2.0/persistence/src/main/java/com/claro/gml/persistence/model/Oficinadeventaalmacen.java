@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "OFICINADEVENTAALMACEN", schema = "CERTREG")
 public class Oficinadeventaalmacen implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private OficinadeventaalmacenId id;
 
 	public Oficinadeventaalmacen() {

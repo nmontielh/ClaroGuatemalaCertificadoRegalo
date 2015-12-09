@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "CL_USUARIOS_CERTIFICADOS", schema = "CERTREG")
 public class ClUsuariosCertificados implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private ClUsuariosCertificadosId id;
 
 	public ClUsuariosCertificados() {

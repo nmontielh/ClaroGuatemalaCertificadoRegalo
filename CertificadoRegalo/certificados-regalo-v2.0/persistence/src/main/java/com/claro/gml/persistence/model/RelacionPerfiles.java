@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "RELACION_PERFILES", schema = "CERTREG")
 public class RelacionPerfiles implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private RelacionPerfilesId id;
 
 	public RelacionPerfiles() {

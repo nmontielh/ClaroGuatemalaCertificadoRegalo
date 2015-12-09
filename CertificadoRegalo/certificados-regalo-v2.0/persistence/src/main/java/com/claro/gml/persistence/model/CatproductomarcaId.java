@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatproductomarcaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int cveproducto;
 	private String cvemarca;
 	private String cvemodelo;

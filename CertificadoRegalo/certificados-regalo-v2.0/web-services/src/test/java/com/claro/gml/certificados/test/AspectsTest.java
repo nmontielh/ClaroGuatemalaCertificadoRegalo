@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
-import com.claro.gml.certificados.facade.CertificadosFacade;
+import com.claro.gml.certificados.composite.service.CertificadosBussinesService;
 
 @ContextConfiguration(locations = { "classpath:dbms-connect-context.xml", "classpath:beanRefContext.xml" })
 public class AspectsTest extends AbstractTestNGSpringContextTests {
@@ -15,7 +15,7 @@ public class AspectsTest extends AbstractTestNGSpringContextTests {
 	private static Logger logger = LoggerFactory.getLogger(AspectsTest.class);
 
 	@Autowired
-	private CertificadosFacade facade;
+	private CertificadosBussinesService facade;
 
 	@Test
 	public void test() {

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "CATMOTIVOCITA", schema = "CERTREG")
 public class Catmotivocita implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private CatmotivocitaId id;
 
 	public Catmotivocita() {

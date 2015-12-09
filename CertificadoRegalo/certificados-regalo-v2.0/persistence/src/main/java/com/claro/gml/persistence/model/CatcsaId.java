@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatcsaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private short idcsa;
 	private String region;
 	private String cveproveedor;

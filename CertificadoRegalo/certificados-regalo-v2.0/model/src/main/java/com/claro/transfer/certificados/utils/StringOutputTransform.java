@@ -5,6 +5,7 @@ import java.util.List;
 import com.claro.transfer.certificados.constants.ErrorCatalog;
 import com.claro.transfer.certificados.constants.SucessCatalog;
 import com.claro.transfer.certificados.response.ActivaTarjeta;
+import com.claro.transfer.certificados.response.AplicaTarjetaCertificado;
 import com.claro.transfer.certificados.response.CancelaTarjetaCertificado;
 import com.claro.transfer.certificados.response.ConsultaMovimientosCertificado;
 import com.claro.transfer.certificados.response.ConsultaSaldoCertificado;
@@ -64,6 +65,19 @@ public class StringOutputTransform {
 		return builder.toString();
 	}
 
+	public static String toString(AplicaTarjetaCertificado tarjeta) {
+		StringBuilder builder = new StringBuilder();
+
+		builder.append(value(tarjeta.getIdMensaje()));
+		builder.append(SEPARATOR);
+		builder.append(value(tarjeta.getMensaje()));
+
+		return builder.toString();
+	}
+	
+	
+	
+	
 	public static String toString(ConsultaSaldoCertificado saldo) {
 
 		StringBuilder builder = new StringBuilder();

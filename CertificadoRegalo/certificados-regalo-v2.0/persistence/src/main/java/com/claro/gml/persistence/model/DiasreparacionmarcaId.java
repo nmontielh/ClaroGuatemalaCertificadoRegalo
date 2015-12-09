@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class DiasreparacionmarcaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String cvemarca;
 	private String cveoficinadeventas;
 	private String cvemensajeria;

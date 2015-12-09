@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EvaluacionId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int idevaluacion;
 	private String cveoficinadeventas;
 	private Byte mes;

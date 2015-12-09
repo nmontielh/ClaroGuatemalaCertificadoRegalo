@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.claro.gml.persistence.model.CcTblmovimientocertificado;
+import com.claro.gml.persistence.model.CcTbltarjetacertificado;
+import com.claro.transfer.certificados.constants.SucessCatalog;
 import com.claro.transfer.certificados.response.ConsultaMovimientosCertificado;
+import com.claro.transfer.certificados.response.ConsultaSaldoCertificado;
 
 public class CertificadosTransform {
 
@@ -52,6 +55,37 @@ public class CertificadosTransform {
 		newMovto.setValorRestante(valorRestante.floatValue());
 
 		return newMovto;
+	}
+
+	/**
+	 * @see transform de CcTbltarjetacertificado a ConsultaSaldoCertificado
+	 * @param saldo
+	 * @return
+	 */
+	public static ConsultaSaldoCertificado transform(CcTbltarjetacertificado saldo) {
+
+		ConsultaSaldoCertificado response = new ConsultaSaldoCertificado();
+
+		String numeroTarjeta = saldo.getNumtarjeta();
+		String numeroCertificado = saldo.getNumcertificado();
+		float saldoTarjeta = saldo.getValorrestante().floatValue();
+		String fechaActivacion = String.valueOf(saldo.getFechaactivacion());
+		String fechaExpiracion = String.valueOf(saldo.getFechaexpiracion());
+		String status = saldo.getEstatus();
+
+		String idMensaje = SucessCatalog.PROCESO_EXITOSO.getCode();
+		String message = SucessCatalog.PROCESO_EXITOSO.getMessage();
+
+		response.setEstatus(status);
+		response.setFechaActivacion(fechaActivacion);
+		response.setFechaExpiracion(fechaExpiracion);
+		response.setIdMensaje(Integer.valueOf(idMensaje));
+		response.setMensaje(message);
+		response.setNumeroCertificado(numeroCertificado);
+		response.setNumeroTarjeta(numeroTarjeta);
+		response.setSaldo(saldoTarjeta);
+
+		return response;
 	}
 
 }

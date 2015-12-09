@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "CC_CTLTIPOMOVIMIENTO", schema = "CERTREG")
 public class CcCtltipomovimiento implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private short idmovto;
 	private String descripcion;
 

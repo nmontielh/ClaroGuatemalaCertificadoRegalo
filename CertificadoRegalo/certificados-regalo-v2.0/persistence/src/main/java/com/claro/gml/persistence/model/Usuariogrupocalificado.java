@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "USUARIOGRUPOCALIFICADO", schema = "CERTREG")
 public class Usuariogrupocalificado implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private UsuariogrupocalificadoId id;
 
 	public Usuariogrupocalificado() {

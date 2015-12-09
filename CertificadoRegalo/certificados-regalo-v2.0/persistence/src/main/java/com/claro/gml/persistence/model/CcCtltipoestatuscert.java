@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "CC_CTLTIPOESTATUSCERT", schema = "CERTREG")
 public class CcCtltipoestatuscert implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private short idestatus;
 	private String descripcion;
 

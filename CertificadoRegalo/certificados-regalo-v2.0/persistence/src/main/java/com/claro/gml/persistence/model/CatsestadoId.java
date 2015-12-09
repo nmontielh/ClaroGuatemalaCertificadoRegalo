@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatsestadoId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String cveestado;
 	private String cvepais;
 	private String descripcion;

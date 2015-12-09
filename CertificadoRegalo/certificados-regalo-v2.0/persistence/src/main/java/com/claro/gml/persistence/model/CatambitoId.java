@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatambitoId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal idambito;
 	private String descripcion;
 	private BigDecimal activo;

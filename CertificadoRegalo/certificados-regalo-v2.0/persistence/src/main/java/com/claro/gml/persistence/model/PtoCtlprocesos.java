@@ -14,6 +14,8 @@ import javax.persistence.Table;
 @Table(name = "PTO_CTLPROCESOS", schema = "CERTREG")
 public class PtoCtlprocesos implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal idproceso;
 	private String nombreproceso;
 	private String descripcion;

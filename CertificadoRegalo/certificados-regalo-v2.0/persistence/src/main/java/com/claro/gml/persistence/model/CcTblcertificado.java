@@ -1,8 +1,9 @@
 package com.claro.gml.persistence.model;
 // Generated Dec 3, 2015 6:51:56 PM by Hibernate Tools 4.3.1.Final
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,19 +16,20 @@ import javax.persistence.Table;
 @Table(name = "CC_TBLCERTIFICADO", schema = "CERTREG")
 public class CcTblcertificado implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String numcertificado;
 	private String numtarjeta;
 	private BigDecimal valor;
 	private String aplicado;
 	private String idusuario;
-	private Serializable fechacarga;
+	private Timestamp fechacarga;
 	private String region;
 
 	public CcTblcertificado() {
 	}
 
 	public CcTblcertificado(String numcertificado, String numtarjeta, BigDecimal valor, String aplicado,
-			String idusuario, Serializable fechacarga) {
+			String idusuario, Timestamp fechacarga) {
 		this.numcertificado = numcertificado;
 		this.numtarjeta = numtarjeta;
 		this.valor = valor;
@@ -37,7 +39,7 @@ public class CcTblcertificado implements java.io.Serializable {
 	}
 
 	public CcTblcertificado(String numcertificado, String numtarjeta, BigDecimal valor, String aplicado,
-			String idusuario, Serializable fechacarga, String region) {
+			String idusuario, Timestamp fechacarga, String region) {
 		this.numcertificado = numcertificado;
 		this.numtarjeta = numtarjeta;
 		this.valor = valor;
@@ -95,11 +97,11 @@ public class CcTblcertificado implements java.io.Serializable {
 	}
 
 	@Column(name = "FECHACARGA", nullable = false)
-	public Serializable getFechacarga() {
+	public Timestamp getFechacarga() {
 		return this.fechacarga;
 	}
 
-	public void setFechacarga(Serializable fechacarga) {
+	public void setFechacarga(Timestamp fechacarga) {
 		this.fechacarga = fechacarga;
 	}
 

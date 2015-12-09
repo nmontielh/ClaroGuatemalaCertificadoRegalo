@@ -3,6 +3,8 @@ package com.claro.gml.persistence.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +17,8 @@ import javax.persistence.Table;
 @Table(name = "PTO_CTLUSUARIOS", schema = "CERTREG")
 public class PtoCtlusuarios implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String numempleado;
 	private String idusuario;
 	private String nombre;
@@ -23,13 +27,13 @@ public class PtoCtlusuarios implements java.io.Serializable {
 	private String status;
 	private Long contadorpmp;
 	private String idusuariocaptura;
-	private Serializable fechaupdate;
+	private Timestamp fechaupdate;
 	private String sistemaadmin;
-	private Serializable fechaadmin;
+	private Timestamp fechaadmin;
 	private BigDecimal idperfiln;
 	private String passwdenc;
 	private Character bancambiapass;
-	private Serializable fechaacceso;
+	private Timestamp fechaacceso;
 
 	public PtoCtlusuarios() {
 	}
@@ -40,9 +44,9 @@ public class PtoCtlusuarios implements java.io.Serializable {
 	}
 
 	public PtoCtlusuarios(String numempleado, String idusuario, String nombre, String idperfil, String password,
-			String status, Long contadorpmp, String idusuariocaptura, Serializable fechaupdate, String sistemaadmin,
-			Serializable fechaadmin, BigDecimal idperfiln, String passwdenc, Character bancambiapass,
-			Serializable fechaacceso) {
+			String status, Long contadorpmp, String idusuariocaptura, Timestamp fechaupdate, String sistemaadmin,
+			Timestamp fechaadmin, BigDecimal idperfiln, String passwdenc, Character bancambiapass,
+			Timestamp fechaacceso) {
 		this.numempleado = numempleado;
 		this.idusuario = idusuario;
 		this.nombre = nombre;
@@ -135,11 +139,11 @@ public class PtoCtlusuarios implements java.io.Serializable {
 	}
 
 	@Column(name = "FECHAUPDATE")
-	public Serializable getFechaupdate() {
+	public Timestamp getFechaupdate() {
 		return this.fechaupdate;
 	}
 
-	public void setFechaupdate(Serializable fechaupdate) {
+	public void setFechaupdate(Timestamp fechaupdate) {
 		this.fechaupdate = fechaupdate;
 	}
 
@@ -153,11 +157,11 @@ public class PtoCtlusuarios implements java.io.Serializable {
 	}
 
 	@Column(name = "FECHAADMIN")
-	public Serializable getFechaadmin() {
+	public Timestamp getFechaadmin() {
 		return this.fechaadmin;
 	}
 
-	public void setFechaadmin(Serializable fechaadmin) {
+	public void setFechaadmin(Timestamp fechaadmin) {
 		this.fechaadmin = fechaadmin;
 	}
 
@@ -189,11 +193,11 @@ public class PtoCtlusuarios implements java.io.Serializable {
 	}
 
 	@Column(name = "FECHAACCESO")
-	public Serializable getFechaacceso() {
+	public Timestamp getFechaacceso() {
 		return this.fechaacceso;
 	}
 
-	public void setFechaacceso(Serializable fechaacceso) {
+	public void setFechaacceso(Timestamp fechaacceso) {
 		this.fechaacceso = fechaacceso;
 	}
 

@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatsproveedorId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String cveproveedor;
 	private String descripcion;
 	private Boolean activo;

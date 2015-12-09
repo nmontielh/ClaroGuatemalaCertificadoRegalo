@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ComentariosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String folio;
 	private Date fecha;
 	private String descripcion;

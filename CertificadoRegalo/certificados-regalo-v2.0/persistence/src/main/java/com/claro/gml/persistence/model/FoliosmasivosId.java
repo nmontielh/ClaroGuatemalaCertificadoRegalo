@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FoliosmasivosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String foliomasivo;
 	private String region;
 	private String cveoficinadeventas;

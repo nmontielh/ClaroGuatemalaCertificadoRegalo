@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "ASIGNAMARCASPROVEEDOR", schema = "CERTREG")
 public class Asignamarcasproveedor implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private AsignamarcasproveedorId id;
 
 	public Asignamarcasproveedor() {

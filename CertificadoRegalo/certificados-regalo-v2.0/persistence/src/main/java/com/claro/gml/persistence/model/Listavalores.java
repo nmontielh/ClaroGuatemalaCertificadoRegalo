@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "LISTAVALORES", schema = "CERTREG")
 public class Listavalores implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private ListavaloresId id;
 
 	public Listavalores() {

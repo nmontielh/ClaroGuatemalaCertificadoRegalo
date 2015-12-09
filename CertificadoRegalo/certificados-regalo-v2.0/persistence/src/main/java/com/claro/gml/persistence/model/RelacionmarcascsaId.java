@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RelacionmarcascsaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String cvemarca;
 	private String cveoficinadeventas;
 	private Boolean vigente;

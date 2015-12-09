@@ -1,7 +1,8 @@
 package com.claro.gml.persistence.model;
 // Generated Dec 3, 2015 6:51:56 PM by Hibernate Tools 4.3.1.Final
 
-import java.io.Serializable;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -16,13 +17,13 @@ public class CcTblmovimientocertificadoId implements java.io.Serializable {
 	private String folio;
 	private String numcertificado;
 	private String numtarjeta;
-	private Serializable fechaoper;
+	private Timestamp fechaoper;
 	private String puntovta;
 
 	public CcTblmovimientocertificadoId() {
 	}
 
-	public CcTblmovimientocertificadoId(String folio, String numcertificado, String numtarjeta, Serializable fechaoper,
+	public CcTblmovimientocertificadoId(String folio, String numcertificado, String numtarjeta, Timestamp fechaoper,
 			String puntovta) {
 		this.folio = folio;
 		this.numcertificado = numcertificado;
@@ -59,11 +60,11 @@ public class CcTblmovimientocertificadoId implements java.io.Serializable {
 	}
 
 	@Column(name = "FECHAOPER", nullable = false)
-	public Serializable getFechaoper() {
+	public Timestamp getFechaoper() {
 		return this.fechaoper;
 	}
 
-	public void setFechaoper(Serializable fechaoper) {
+	public void setFechaoper(Timestamp fechaoper) {
 		this.fechaoper = fechaoper;
 	}
 

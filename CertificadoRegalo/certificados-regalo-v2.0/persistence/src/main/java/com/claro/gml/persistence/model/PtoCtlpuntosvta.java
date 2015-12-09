@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "PTO_CTLPUNTOSVTA", schema = "CERTREG")
 public class PtoCtlpuntosvta implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String idpuntovta;
 	private String segmentoip;
 	private Long rangoinf;

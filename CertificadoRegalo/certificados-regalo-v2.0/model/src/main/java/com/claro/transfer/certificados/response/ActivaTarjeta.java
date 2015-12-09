@@ -9,7 +9,7 @@ public class ActivaTarjeta implements Serializable {
 
 	private String numeroCertificado;
 	private String numeroTarjeta;
-	private String montoCertificado;
+	private Long montoCertificado;
 	private String fechaActivacion;
 	private String fechaExpiracion;
 	private String estatus;
@@ -30,11 +30,11 @@ public class ActivaTarjeta implements Serializable {
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public String getMontoCertificado() {
+	public Long getMontoCertificado() {
 		return montoCertificado;
 	}
 
-	public void setMontoCertificado(String montoCertificado) {
+	public void setMontoCertificado(Long montoCertificado) {
 		this.montoCertificado = montoCertificado;
 	}
 

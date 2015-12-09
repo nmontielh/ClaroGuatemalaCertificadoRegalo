@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 	<context:component-scan base-package="com.claro.gml.certificados.services,
+	com.claro.gml.certificados.composite.service,
 	com.claro.gml.certificados.facade" />
 
 </beans>

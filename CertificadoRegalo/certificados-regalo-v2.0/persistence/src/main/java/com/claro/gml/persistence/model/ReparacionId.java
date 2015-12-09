@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ReparacionId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String folio;
 	private int cveproducto;
 

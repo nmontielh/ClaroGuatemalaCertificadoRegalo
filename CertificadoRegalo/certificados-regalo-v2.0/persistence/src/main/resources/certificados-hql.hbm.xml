@@ -3,6 +3,7 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
+
 	<query name="findMovCertByNumCertif">
 	<![CDATA[
 		from CcTblmovimientocertificado
@@ -10,5 +11,71 @@
 		order by id.fechaoper desc
 	]]>
 	</query>
+
+
+<!-- Query que se encarga de traer el usuario con base al numero de usuario -->
+	<query name="findUsuarioByUser">
+	<![CDATA[
+		from CcCtlusuarios u
+		where u.id.usuario = ?
+	]]>
+	</query>
+
+<!-- Obtenemos el certificado con base a numTarjeta, valor y region -->
+	<query name="findCertificado">
+	<![CDATA[
+		from CcTblcertificado c
+		where c.numtarjeta = ?
+		and c.valor= ?
+		and c.region = ?
+	]]>
+	</query>
+
+	<query name="findCertificadoByNumTarjeta">
+	<![CDATA[
+		from CcTblcertificado c
+		where c.numcertificado = ?
+		and c.numtarjeta = ?
+	]]>
+	</query>
+
+<!-- Query para consultar saldo -->
+	<query name="findTarjetaCertificadoByNumCertificado">
+	<![CDATA[
+			from CcTbltarjetacertificado t
+			where t.numcertificado = ?
+	]]>
+	</query>
+
+	<query name="findCertificadoByNumCertificado">
+	<![CDATA[
+		from CcTblcertificado c
+		where c.numcertificado = ?
+	]]>
+	</query>
+	
+
+	<query name="findTarjetaCertificadoByNumTarjeta">
+	<![CDATA[
+			from CcTbltarjetacertificado t
+			where t.numcertificado = ?
+			and t.numtarjeta = ?
+			]]>
+	</query>
+	
+		<query name="findTarjetaCertificadoByJustNumTarjeta">
+	<![CDATA[
+			from CcTbltarjetacertificado t
+			where t.numtarjeta = ?
+			]]>
+	</query>
+
+	<query name="findMovtoCertificadoByFolio">
+	<![CDATA[
+			from CcTblmovimientocertificado mc
+			where mc.id.folio=?
+			]]>
+	</query>
+
 
 </hibernate-mapping>

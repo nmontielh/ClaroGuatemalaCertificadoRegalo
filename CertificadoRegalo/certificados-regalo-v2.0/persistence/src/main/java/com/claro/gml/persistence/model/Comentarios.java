@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "COMENTARIOS", schema = "CERTREG")
 public class Comentarios implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private ComentariosId id;
 
 	public Comentarios() {

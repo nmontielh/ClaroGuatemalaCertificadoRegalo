@@ -2,6 +2,8 @@ package com.claro.transfer.certificados.response;
 
 import java.io.Serializable;
 
+import com.claro.transfer.certificados.constants.SucessCatalog;
+
 public class CancelaTarjetaCertificado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -13,6 +15,13 @@ public class CancelaTarjetaCertificado implements Serializable {
 
 	}
 
+	public CancelaTarjetaCertificado(SucessCatalog sucess) {
+		super();
+		this.idMensaje = sucess.getCode();
+		this.mensaje = sucess.getMessage();
+	}
+	
+	
 	public CancelaTarjetaCertificado(String idMensaje, String mensaje) {
 		super();
 		this.idMensaje = idMensaje;

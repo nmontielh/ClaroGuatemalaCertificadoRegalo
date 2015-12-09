@@ -18,6 +18,8 @@ import javax.persistence.Table;
 @Table(name = "PTO_CTLPERFIL_CA", schema = "CERTREG")
 public class PtoCtlperfilCa implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private PtoCtlperfilCaId id;
 	private PtoCtlpantallaCa ptoCtlpantallaCa;
 	private PtoCtlperfiln ptoCtlperfiln;

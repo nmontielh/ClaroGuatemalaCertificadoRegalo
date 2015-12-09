@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SeguimientogarantiaaccId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String foliogenerico;
 	private String material;
 	private String cveoficinadeventas;

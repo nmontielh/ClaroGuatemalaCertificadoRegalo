@@ -10,6 +10,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatfallaId implements java.io.Serializable {
 
+	
+	private static final long serialVersionUID = 1L;
+	
 	private short idfalla;
 	private String descripcion;
 	private Byte activo;

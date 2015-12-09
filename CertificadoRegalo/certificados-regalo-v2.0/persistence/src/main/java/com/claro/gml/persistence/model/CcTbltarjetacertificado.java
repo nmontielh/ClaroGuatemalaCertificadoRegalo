@@ -1,8 +1,9 @@
 package com.claro.gml.persistence.model;
 // Generated Dec 3, 2015 6:51:56 PM by Hibernate Tools 4.3.1.Final
 
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,11 +16,12 @@ import javax.persistence.Table;
 @Table(name = "CC_TBLTARJETACERTIFICADO", schema = "CERTREG")
 public class CcTbltarjetacertificado implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String numcertificado;
 	private String numtarjeta;
 	private BigDecimal valorrestante;
-	private Serializable fechaactivacion;
-	private Serializable fechaexpiracion;
+	private Timestamp fechaactivacion;
+	private Timestamp fechaexpiracion;
 	private String estatus;
 	private String idusuario;
 
@@ -27,7 +29,7 @@ public class CcTbltarjetacertificado implements java.io.Serializable {
 	}
 
 	public CcTbltarjetacertificado(String numcertificado, String numtarjeta, BigDecimal valorrestante,
-			Serializable fechaactivacion, String estatus, String idusuario) {
+			Timestamp fechaactivacion, String estatus, String idusuario) {
 		this.numcertificado = numcertificado;
 		this.numtarjeta = numtarjeta;
 		this.valorrestante = valorrestante;
@@ -37,7 +39,7 @@ public class CcTbltarjetacertificado implements java.io.Serializable {
 	}
 
 	public CcTbltarjetacertificado(String numcertificado, String numtarjeta, BigDecimal valorrestante,
-			Serializable fechaactivacion, Serializable fechaexpiracion, String estatus, String idusuario) {
+			Timestamp fechaactivacion, Timestamp fechaexpiracion, String estatus, String idusuario) {
 		this.numcertificado = numcertificado;
 		this.numtarjeta = numtarjeta;
 		this.valorrestante = valorrestante;
@@ -77,20 +79,20 @@ public class CcTbltarjetacertificado implements java.io.Serializable {
 	}
 
 	@Column(name = "FECHAACTIVACION", nullable = false)
-	public Serializable getFechaactivacion() {
+	public Timestamp getFechaactivacion() {
 		return this.fechaactivacion;
 	}
 
-	public void setFechaactivacion(Serializable fechaactivacion) {
+	public void setFechaactivacion(Timestamp fechaactivacion) {
 		this.fechaactivacion = fechaactivacion;
 	}
 
 	@Column(name = "FECHAEXPIRACION")
-	public Serializable getFechaexpiracion() {
+	public Timestamp getFechaexpiracion() {
 		return this.fechaexpiracion;
 	}
 
-	public void setFechaexpiracion(Serializable fechaexpiracion) {
+	public void setFechaexpiracion(Timestamp fechaexpiracion) {
 		this.fechaexpiracion = fechaexpiracion;
 	}
 

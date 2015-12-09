@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RelacionPerfilesId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private byte idRelacion;
 	private String perfil;
 	private Byte activo;

@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ClUsuariosCertificadosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Long clUsuariosCertificadosId;
 	private String usuarioNombre;
 	private String usuarioPass;

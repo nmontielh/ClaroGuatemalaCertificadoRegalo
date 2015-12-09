@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatrefaccionesId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int cveproducto;
 	private String cveoficinadeventas;
 	private BigDecimal precio;

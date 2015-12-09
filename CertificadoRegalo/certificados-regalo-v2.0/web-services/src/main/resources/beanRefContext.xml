@@ -12,6 +12,7 @@
 	<context:component-scan base-package="com.claro.ws.service,
 	com.claro.gml.certificados.persistence.dao,
 	com.claro.gml.certificados.services,
+	com.claro.gml.certificados.composite.service,
 	com.claro.gml.certificados.facade,	
 	com.claro.aspects" />
 

@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ListavaloresId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private short idlistavalor;
 	private String llave;
 	private String valor;

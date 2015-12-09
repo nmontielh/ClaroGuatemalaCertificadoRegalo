@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SettingId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal idSetting;
 	private String llave;
 	private String valor;

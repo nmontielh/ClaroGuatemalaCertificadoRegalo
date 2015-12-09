@@ -4,7 +4,7 @@ public enum SucessCatalog {
 
 	CANCELA_ACTIVACION_TARJETA("00","Se canceló el certificado"),
 	PROCESO_EXITOSO("00","proceso exitoso"),
-	APLICA_CERT_EXITOSO("00","Se realizó satisfactoriamente la operación. Saldo Restante"),
+	APLICA_CERT_EXITOSO("00","Se realizó satisfactoriamente la operación: [SSSSSRRRRR]"),
 	MOVTO_CANCEL_OK("00","El movimiento fue cancelado exitosamente");
 	
 	private String code;
@@ -23,4 +23,11 @@ public enum SucessCatalog {
 		return this.message;
 	}
 
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	
+	
+	
 }

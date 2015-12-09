@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class GrupopermisoId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal idgrupo;
 	private BigDecimal idpermiso;
 

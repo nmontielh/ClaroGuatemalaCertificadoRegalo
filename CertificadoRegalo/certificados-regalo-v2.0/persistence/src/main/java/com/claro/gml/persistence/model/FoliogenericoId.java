@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FoliogenericoId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String foliogenerico;
 	private String folio;
 	private String tipofolio;

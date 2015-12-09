@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatdiasfestivosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Date fecha;
 	private Boolean activo;
 	private String pais;

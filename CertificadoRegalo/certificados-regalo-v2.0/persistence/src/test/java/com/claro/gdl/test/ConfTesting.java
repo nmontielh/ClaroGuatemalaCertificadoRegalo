@@ -1,5 +1,7 @@
 package com.claro.gdl.test;
 
+import java.util.GregorianCalendar;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class ConfTesting extends AbstractTestNGSpringContextTests {
 	public void test() {
 
 		logger.info("Es una prueba de conectividad..");
+		
+		logger.info(" month [{}]", GregorianCalendar.MONTH);
+		
 
 	}
 

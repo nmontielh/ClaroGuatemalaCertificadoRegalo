@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "FOLIOGENERICO", schema = "CERTREG")
 public class Foliogenerico implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private FoliogenericoId id;
 
 	public Foliogenerico() {

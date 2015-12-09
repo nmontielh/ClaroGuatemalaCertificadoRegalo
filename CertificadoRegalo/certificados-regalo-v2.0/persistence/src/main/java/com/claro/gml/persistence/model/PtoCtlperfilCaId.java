@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PtoCtlperfilCaId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal idperfiln;
 	private BigDecimal idpantalla;
 	private BigDecimal idproceso;

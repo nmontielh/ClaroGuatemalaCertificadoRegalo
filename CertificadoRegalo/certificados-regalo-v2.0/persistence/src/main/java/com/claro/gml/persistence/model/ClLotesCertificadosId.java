@@ -12,6 +12,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class ClLotesCertificadosId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private BigDecimal idLote;
 	private BigDecimal numtarjetaInicia;
 	private BigDecimal numtarjetaFinaliza;

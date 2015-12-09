@@ -10,6 +10,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CatdistribuidorId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private short iddistribuidor;
 	private String region;
 	private String fuerzaventas;
