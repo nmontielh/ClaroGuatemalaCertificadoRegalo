@@ -17,3 +17,5 @@ hs_err_pid*
 .classpath
 .metadata/
 Servers/
+#ignoramos los archivos de pruebas
+test-output/
