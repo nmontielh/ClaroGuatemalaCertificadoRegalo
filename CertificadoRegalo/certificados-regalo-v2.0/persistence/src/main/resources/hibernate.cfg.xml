@@ -18,6 +18,7 @@
 		<property name="hibernate.use_sql_comments">false</property>
 		<property name="hibernate.generate_statistics">false</property>
 		<property name="hibernate.auto_close_session">true</property>
+		<property name="hibernate.default_schema">CERTREG</property>
 
 		<property name="hibernate.max_fetch_depth">3</property>
 		<property name="hibernate.default_batch_fetch_size">8</property>
