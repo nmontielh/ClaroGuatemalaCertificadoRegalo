@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.claro.gml.persistence.model.CcCtlusuarios;
 import com.claro.gml.persistence.model.CcTblcertificado;
@@ -15,6 +17,8 @@ import com.claro.transfer.certificados.constants.SucessCatalog;
 import com.claro.transfer.certificados.exception.BussinesException;
 
 public class CertificadosUtils {
+
+	private static Logger logger = LoggerFactory.getLogger(CertificadosUtils.class);
 
 	/**
 	 * @see Metodo que valida si el certificado es valido (no aplicado)
@@ -35,10 +39,19 @@ public class CertificadosUtils {
 	 */
 	public static void regionExist(CcCtlusuarios user) throws BussinesException {
 
+		logger.debug(" user  [{}]", user);
+
+		if (user == null || user.getId() == null)
+			throw new BussinesException(ErrorCatalog.NO_EXISTE_USUARIO);
+
+		logger.debug("user->getid  [{}]", user.getId());
+
 		String region = (user != null && user.getId() != null) ? user.getId().getRegion() : null;
 
+		logger.debug("region [{}]", region);
+
 		if (region == null)
-			new BussinesException(ErrorCatalog.NO_EXISTE_USUARIO);
+			throw new BussinesException(ErrorCatalog.NO_EXISTE_USUARIO);
 
 	}
 
@@ -63,13 +76,14 @@ public class CertificadosUtils {
 			String text = error.getMessage();
 
 			text = StringUtils.replace(text, tarjeta_token, numeroTarjeta);
-			text = StringUtils.replace(text, monto_token, montoCertificado.toString());
+			text = StringUtils.replace(text, monto_token, String.valueOf(montoCertificado));
 
 			error.setMessage(text);
 
 			throw new BussinesException(error);
-		} else if (certificado != null && !certificado.getAplicado().equals(AplicadoCatalog.NO)) {
+		} else if (!certificado.getAplicado().equals(AplicadoCatalog.NO.getValue())) {
 
+			logger.debug("Aplicado [{}]", certificado.getAplicado());
 			ErrorCatalog error = ErrorCatalog.TARJETA_VENDIDA;
 			String text = error.getMessage();
 			text = StringUtils.replace(text, tarjeta_token, numeroTarjeta);
@@ -153,7 +167,7 @@ public class CertificadosUtils {
 		error.setMessage(message);
 
 	}
-	
+
 	/**
 	 * @see Sustituye el valor del token para las fechas
 	 * @param sucess
@@ -169,10 +183,9 @@ public class CertificadosUtils {
 		error.setMessage(message);
 
 	}
-	
 
 	/**
-	 * @see Sustituye el valor del toket para los saldos
+	 * @see Sustituye el valor del tiket para los saldos
 	 * @param sucess
 	 * @param saldo
 	 */

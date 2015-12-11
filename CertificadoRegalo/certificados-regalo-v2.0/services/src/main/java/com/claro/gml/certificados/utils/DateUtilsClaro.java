@@ -88,4 +88,18 @@ public class DateUtilsClaro {
 		return days.getDays();
 	}
 
+	/**
+	 * @see agrega la cantidad de meses a la fecha inicio
+	 * @param fechaIni
+	 * @param meses
+	 * @return
+	 */
+	public static Date addMonth(Date fechaIni, int meses) {
+
+		DateTime initial = new DateTime(fechaIni);
+		DateTime end = initial.plusMonths(meses);
+
+		return end.toDate();
+	}
+
 }

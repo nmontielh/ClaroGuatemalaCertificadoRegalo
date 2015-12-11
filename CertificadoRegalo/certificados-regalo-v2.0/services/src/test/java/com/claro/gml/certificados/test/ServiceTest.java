@@ -12,7 +12,10 @@ import org.testng.annotations.Test;
 import com.claro.gml.certificados.services.CertificadosService;
 import com.claro.gml.persistence.model.CcCtlusuarios;
 import com.claro.gml.persistence.model.CcTblcertificado;
+import com.claro.gml.persistence.model.CcTblmovimientocertificado;
+import com.claro.gml.persistence.model.CcTbltarjetacertificado;
 import com.claro.transfer.certificados.exception.BussinesException;
+import com.claro.transfer.certificados.request.MovimientoCertificadoTO;
 import com.claro.transfer.certificados.response.ActivaTarjeta;
 import com.claro.transfer.certificados.response.ConsultaMovimientosCertificado;
 
@@ -62,9 +65,11 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
+	@Deprecated
 	@Test
 	public void consultaCertificadoByTarjeta() {
 
+		// TODO revisar si aun se usa
 		String numeroTarjeta = "1000000000000117";
 		String numCertificado = "6151807679260546";
 		CcTblcertificado certificado = service.findCertificadoByNumTarjeta(numeroTarjeta, numCertificado);
@@ -83,15 +88,169 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 		service.updateCertificado(numCertificado, numeroTarjeta, idUsuario);
 	}
 
-	@Test
-	public void saveTarjetaCertificado() throws BussinesException {
+	@Test(enabled = false)
+	public void updateCertificadoComplete() {
 
-		String certificado = "6151807679260546";
-		String idUsuario = "UNIT-TEST";
+		CcTblcertificado certificado = null;
+		String idUsuario = null;
+		try {
+			service.updateCertificado(certificado, idUsuario);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test(enabled = false)
+	public void findTarjetaCertificado() {
+
+		String numCertificado = null;
+
+		try {
+			CcTbltarjetacertificado certificado = service.findTarjetaCertificado(numCertificado);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test(enabled = false)
+	public void findCertificadoByNumCertificado() {
+
+		String numCertificado = null;
+
+		try {
+			CcTblcertificado certificado = service.findCertificadoByNumCertificado(numCertificado);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test(enabled = true)
+	public void findTarjetaCertificadoByNumTarjeta() {
+
+		String numeroTarjeta = null;
+		try {
+			CcTbltarjetacertificado resultado = service.findTarjetaCertificadoByNumTarjeta(numeroTarjeta);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test(enabled = true)
+	public void findMovtoCertificadoByFolio() {
+
+		String folio = null;
+		try {
+			service.findMovtoCertificadoByFolio(folio);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test(enabled = true)
+	public void updateCanceladoTarjetaCertificados() {
+
+		String idUsuario = null;
+		CcTbltarjetacertificado tarjeta = null;
+		try {
+			service.updateCanceladoTarjetaCertificados(idUsuario, tarjeta);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test(enabled = true)
+	public void saveMovtoCertificado() {
+		CcTbltarjetacertificado tarjeta = null;
+		MovimientoCertificadoTO movto = null;
+		try {
+			service.saveMovtoCertificado(tarjeta, movto);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test(enabled = true)
+	public void saveMovtoCertificadoComplete() {
+
+		CcTbltarjetacertificado tarjeta = null;
+		CcTblmovimientocertificado movto = null;
+		String folio = null;
+		String idUsuario = null;
+		String ptoVenta = null;
+		String referencia = null;
+		float valorRestante = 0;
+
+		try {
+			service.saveMovtoCertificado(tarjeta, movto, folio, idUsuario, ptoVenta, referencia, valorRestante);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updateTarjetaCertificado() {
+
+		CcTbltarjetacertificado tarjeta = null;
+		float valorRestante = 0;
+		String idUsuario = null;
+		try {
+			service.updateTarjetaCertificado(tarjeta, valorRestante, idUsuario);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void updateTarjetaCertificado2() {
+
+		CcTbltarjetacertificado tarjeta = null;
+		String idUsuario = null;
+		try {
+			service.updateTarjetaCertificado(tarjeta, idUsuario);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updateMovtoCertificadoCancelado() {
+
+		CcTblmovimientocertificado movto = null;
+		String idUsuario = null;
+		try {
+			service.updateMovtoCertificadoCancelado(movto, idUsuario);
+		} catch (BussinesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void saveTarjetaCertificado() {
+
+		String certificado = "6151807679260547";
+		String idUsuario = "UNIT-TEST2";
 		String numeroTarjeta = "1000000000000117";
 		long monto = 40;
 
-		ActivaTarjeta tarjeta = service.saveTarjetaCertificado(certificado, idUsuario, numeroTarjeta, monto);
+		ActivaTarjeta tarjeta = null;
+		try {
+			tarjeta = service.saveTarjetaCertificado(certificado, idUsuario, numeroTarjeta, monto);
+		} catch (BussinesException e) {
+			logger.error("Error al salvar [{}] ", e.getMessage());
+		}
 
 		logger.info("resultado:[{}]", tarjeta);
 	}

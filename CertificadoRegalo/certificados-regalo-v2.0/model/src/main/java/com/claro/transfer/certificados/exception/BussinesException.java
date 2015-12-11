@@ -9,7 +9,7 @@ public class BussinesException extends Exception {
 	private ErrorCatalog error;
 
 	public BussinesException(ErrorCatalog error) {
-		super();
+		super(error.getMessage());
 		this.error = error;
 	}
 

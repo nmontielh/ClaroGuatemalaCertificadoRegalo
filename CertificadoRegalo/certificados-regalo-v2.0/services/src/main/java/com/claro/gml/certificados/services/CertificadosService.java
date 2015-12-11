@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class CertificadosService {
 					CcTblmovimientocertificado.class);
 		} catch (Exception e) {
 			log.error("Error to request to database findMovCertByNumCertif[{}] :  [{}]", numTarjeta, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -95,7 +96,7 @@ public class CertificadosService {
 			response = dao.findObjectByQuery("findUsuarioByUser", new Object[] { usuario }, types, CcCtlusuarios.class);
 		} catch (Exception e) {
 			log.error("Error to findUsuarioByUser [{}] [{}]", usuario, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -121,7 +122,7 @@ public class CertificadosService {
 					CcTblcertificado.class);
 		} catch (Exception e) {
 			log.error("Error to findCertificado [{}] [{}] [{}] [{}]", numeroTarjeta, monto, region, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -140,18 +141,26 @@ public class CertificadosService {
 	public ActivaTarjeta saveTarjetaCertificado(String certificado, String idUsuario, String numeroTarjeta, long monto)
 			throws BussinesException {
 
-		GregorianCalendar fechaActivacion = (GregorianCalendar) GregorianCalendar.getInstance();
+		// GregorianCalendar fechaActivacion = (GregorianCalendar)
+		// GregorianCalendar.getInstance();
 
-		// Agregamos 6 meses
-		GregorianCalendar fechaExpiracion = (GregorianCalendar) GregorianCalendar.getInstance();
-		fechaExpiracion.add(GregorianCalendar.MONTH, 6);
+		// Agregamos 6 meses (Tomar del date utils)
+		// GregorianCalendar fechaExpiracion = (GregorianCalendar)
+		// GregorianCalendar.getInstance();
+		// fechaExpiracion.add(GregorianCalendar.MONTH, 6);
+
+		Date fechaActivacion = DateUtilsClaro.now();
+
+		// Agregamos 6 meses a la fecha de activacion
+
+		Date expirationDate = DateUtilsClaro.addMonth(fechaActivacion, 6);
 
 		CcTbltarjetacertificado entity = new CcTbltarjetacertificado();
 		entity.setNumcertificado(certificado);
 		entity.setNumtarjeta(numeroTarjeta);
 		entity.setValorrestante(new BigDecimal(monto));
-		entity.setFechaactivacion(new Timestamp(fechaActivacion.getTimeInMillis()));
-		entity.setFechaexpiracion(new Timestamp(fechaExpiracion.getTimeInMillis()));
+		entity.setFechaactivacion(new Timestamp(fechaActivacion.getTime()));
+		entity.setFechaexpiracion(new Timestamp(expirationDate.getTime()));
 		entity.setEstatus(EstatusCatalog.ACTIVO.getValue());
 		entity.setIdusuario(idUsuario);
 
@@ -163,7 +172,7 @@ public class CertificadosService {
 		} catch (Exception e) {
 			log.error("Error to saveTarjetaCertificado [{}] [{}] [{}] [{}] [{}]", certificado, idUsuario, numeroTarjeta,
 					monto, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -175,10 +184,10 @@ public class CertificadosService {
 		resultado.setMontoCertificado(monto);
 
 		// Ajustamos las fechas
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		// SimpleDateFormat sdf = new SimpleDateFormat();
 
-		String fes = sdf.format(fechaExpiracion.getTime());
-		String fas = sdf.format(fechaActivacion.getTime());
+		String fes = DateUtilsClaro.toFormatString(expirationDate, "ddMMyyyy");
+		String fas = DateUtilsClaro.toFormatString(fechaActivacion, "ddMMyyyy");
 
 		resultado.setFechaExpiracion(fes);
 		resultado.setFechaActivacion(fas);
@@ -195,6 +204,7 @@ public class CertificadosService {
 	 * @param numCertificado
 	 * @return
 	 */
+	@Deprecated
 	public CcTblcertificado findCertificadoByNumTarjeta(String numCertificado, String numeroTarjeta) {
 
 		Type[] types = { StringType.INSTANCE, StringType.INSTANCE };
@@ -242,7 +252,7 @@ public class CertificadosService {
 			dao.update(certificado, CcTblcertificado.class);
 		} catch (Exception e) {
 			log.error("Error to updateCertificado [{}] [{}] [{}] ", certificado, idUsuario, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -266,7 +276,7 @@ public class CertificadosService {
 					types, CcTbltarjetacertificado.class);
 		} catch (Exception e) {
 			log.error("Error to findTarjetaCertificado [{}] [{}]  ", numCertificado, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -290,7 +300,7 @@ public class CertificadosService {
 					CcTblcertificado.class);
 		} catch (Exception e) {
 			log.error("Error to findCertificadoByNumCertificado [{}] [{}]  ", numCertificado, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -298,6 +308,7 @@ public class CertificadosService {
 		return response;
 	}
 
+	@Deprecated
 	public CcTbltarjetacertificado findTarjetaCertificadoByNumTarjeta(String numCertificado, String numeroTarjeta) {
 
 		Type[] types = { StringType.INSTANCE, StringType.INSTANCE };
@@ -325,7 +336,7 @@ public class CertificadosService {
 					types, CcTbltarjetacertificado.class);
 		} catch (Exception e) {
 			log.error("Error to findTarjetaCertificadoByNumTarjeta [{}] [{}]  ", numeroTarjeta, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -347,7 +358,7 @@ public class CertificadosService {
 			dao.update(tarjeta, CcTbltarjetacertificado.class);
 		} catch (Exception e) {
 			log.error("Error to updateCanceladoTarjetaCertificados [{}] [{}]  ", idUsuario, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -369,7 +380,7 @@ public class CertificadosService {
 			dao.update(certificado, CcTblcertificado.class);
 		} catch (Exception e) {
 			log.error("Error to updateCertificado [{}] [{}]  ", idUsuario, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -419,7 +430,7 @@ public class CertificadosService {
 			log.info("key [{}]", keySaved);
 		} catch (Exception e) {
 			log.error("Error to saveMovtoCertificado [{}] ", e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -467,7 +478,7 @@ public class CertificadosService {
 			log.info("key [{}]", keySaved);
 		} catch (Exception e) {
 			log.error("Error to saveMovtoCertificado [{}] ", e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -491,7 +502,7 @@ public class CertificadosService {
 			dao.update(tarjeta, CcTbltarjetacertificado.class);
 		} catch (Exception e) {
 			log.error("Error to updateTarjetaCertificado [{}] [{}]  ", valorRestante, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -508,7 +519,7 @@ public class CertificadosService {
 			dao.update(tarjeta, CcTbltarjetacertificado.class);
 		} catch (Exception e) {
 			log.error("Error to updateTarjetaCertificado  [{}]  ", e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -531,7 +542,7 @@ public class CertificadosService {
 					CcTblmovimientocertificado.class);
 		} catch (Exception e) {
 			log.error("Error to findMovtoCertificadoByFolio  [{}] [{}]  ", folio, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
@@ -556,7 +567,7 @@ public class CertificadosService {
 			dao.update(movto, CcTblmovimientocertificado.class);
 		} catch (Exception e) {
 			log.error("Error to updateMovtoCertificado [{}] [{}]  ", idUsuario, e.getMessage(), e);
-			ErrorCatalog error = ErrorCatalog.BUSSINES_ERROR.OTROS;
+			ErrorCatalog error = ErrorCatalog.OTROS;
 			CertificadosUtils.setError(e, error);
 			throw new BussinesException(error);
 		}
