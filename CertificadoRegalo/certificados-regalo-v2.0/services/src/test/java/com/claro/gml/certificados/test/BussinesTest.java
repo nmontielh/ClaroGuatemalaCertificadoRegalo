@@ -43,43 +43,58 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 
 		}
 
-		
-
 	}
 
 	/**
 	 * 2o metodo a ejecutar para la prueba
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void aplicaCertificado() {
 
 		String resultado = null;
 
 		MovimientoCertificadoTO movimientoCertificadoTO = new MovimientoCertificadoTO();
-		
-		String idUsuario="certGT";
-		String numeroCertificado="4351807679251398";
-		String puntoVenta="MiCasita";
-		String referencia="MiReferenciaPrueba";
-		float valorAplicado=50f;
-		
-		
+
+		String idUsuario = "certGT";
+		String numeroCertificado = "4351807679251398";
+		String puntoVenta = "MiCasita";
+		String referencia = "MiReferenciaPrueba";
+		float valorAplicado = 50f;
+
 		movimientoCertificadoTO.setIdUsuario(idUsuario);
 		movimientoCertificadoTO.setNumeroCertificado(numeroCertificado);
 		movimientoCertificadoTO.setPuntoVenta(puntoVenta);
 		movimientoCertificadoTO.setReferencia(referencia);
 		movimientoCertificadoTO.setValorAplicado(valorAplicado);
-		
+
 		try {
 			resultado = facade.aplicaCertificado(movimientoCertificadoTO);
 			logger.info("resultado : [{}]", resultado);
 		} catch (BussinesException e) {
 			logger.error("Error [{}]", e.getMessage(), e);
 		}
-		
 
 	}
-	
+
+	@Test(enabled = false)
+	public void cancelaAplicaCertificado() {
+
+		//TODO revisas las multiples excepciones que puede lanzar
+		String resultado = null;
+
+		String folio = "1398111215121023";
+		String idUsuario = "certGT";
+		String idpuntoVta = "MiCasita";
+		String referencia = "MiReferenciaPrueba";
+		try {
+			resultado = facade.cancelaAplicaCertificado(folio, idUsuario, idpuntoVta, referencia);
+			logger.info("resultado : [{}]", resultado);
+		} catch (BussinesException e) {
+			logger.error("Error [{}]", e.getMessage(), e);
+		}
+
+	}
+
 	/**
 	 * Este es es el 3er metodo que se debe ejecutar, se debe activar el
 	 * ceryificado
@@ -129,27 +144,6 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 		} catch (BussinesException e) {
 			logger.error("Error [{}]", e.getMessage(), e);
 
-		}
-
-		logger.info("resultado : [{}]", resultado);
-
-	}
-
-	
-
-	@Test(enabled = false)
-	public void cancelaAplicaCertificado() {
-
-		String resultado = null;
-
-		String folio = null;
-		String idUsuario = null;
-		String idpuntoVta = null;
-		String referencia = null;
-		try {
-			resultado = facade.cancelaAplicaCertificado(folio, idUsuario, idpuntoVta, referencia);
-		} catch (BussinesException e) {
-			logger.error("Error [{}]", e.getMessage(), e);
 		}
 
 		logger.info("resultado : [{}]", resultado);
