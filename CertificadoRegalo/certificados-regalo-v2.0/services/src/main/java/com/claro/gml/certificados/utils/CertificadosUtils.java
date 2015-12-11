@@ -198,6 +198,8 @@ public class CertificadosUtils {
 
 		sucess.setMessage(message);
 
+		
+		logger.debug(" message [{}]", sucess.getMessage());
 	}
 
 	/**

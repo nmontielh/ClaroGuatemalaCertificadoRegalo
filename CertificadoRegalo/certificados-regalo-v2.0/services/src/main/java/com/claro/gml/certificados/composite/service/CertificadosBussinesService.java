@@ -179,6 +179,7 @@ public class CertificadosBussinesService {
 	 */
 	public String aplicaCertificado(MovimientoCertificadoTO movimientoCertificadoTO) throws BussinesException {
 
+		
 		String numCertificado = movimientoCertificadoTO.getNumeroCertificado();
 
 		CcTbltarjetacertificado tarjeta = service.findTarjetaCertificado(numCertificado);
@@ -188,7 +189,7 @@ public class CertificadosBussinesService {
 		CertificadosUtils.validaCertificado(tarjeta);
 
 		// Obtenemos las fechas
-		Date fechaExpiracion = DateUtilsClaro.getDate(tarjeta.getFechaactivacion());
+		Date fechaExpiracion = DateUtilsClaro.getDate(tarjeta.getFechaexpiracion());
 		Date hoy = DateUtilsClaro.now();
 
 		// Obtenemos los saldos (Este code esta duplicado en el saveMovto)
@@ -202,18 +203,22 @@ public class CertificadosBussinesService {
 			service.updateTarjetaCertificado(tarjeta, movimientoCertificadoTO.getIdUsuario());
 			ErrorCatalog error = ErrorCatalog.CERTIFICADO_EXPIRADO;
 			CertificadosUtils.setMessage(error, DateUtilsClaro.toFormatString(fechaExpiracion, "ddMMyyyy"));
+			throw new BussinesException(error);
 
 		} else if (CertificadosUtils.tieneSaldoSuficiente(saldo, valorAplicado)) {
-
+			
 			service.saveMovtoCertificado(tarjeta, movimientoCertificadoTO);
 
 			service.updateTarjetaCertificado(tarjeta, valorRestante, movimientoCertificadoTO.getIdUsuario());
-
+			
 			SucessCatalog sucess = SucessCatalog.APLICA_CERT_EXITOSO;
 			CertificadosUtils.setMessage(sucess, valorRestante);
 
 			AplicaTarjetaCertificado result = new AplicaTarjetaCertificado(sucess);
 			response = StringOutputTransform.toString(result);
+			
+			log.info("Response : [{}]", response);
+			
 
 		} else {
 			ErrorCatalog error = ErrorCatalog.SALDO_INSUFICIENTE;

@@ -12,29 +12,7 @@
 		</layout>
 	</appender>
 	
-<!-- Log del Maya -->
-<logger name="mx.omnitracs.maya" level="INFO"/>
-
-<!-- Log de Maya DAO -->
-	<logger name="mx.omnitracs.maya.persistence.dao" level="INFO"/>
-
-<!-- Log de Spring -->
-	<logger name="org.springframework" level="ERROR" />
-
-<!-- Log de hibernate -->
-<!-- 
-	<logger name="o.h.loader.entity.EntityLoader" level="DEBUG" />
-	<logger name="o.h.p.c.AbstractCollectionPersister" level="DEBUG" />
-	<logger name="o.h.p.entity.AbstractEntityPersister" level="DEBUG" />
-	<logger name="org.hibernate.type" level="DEBUG" />
-	<logger name="org.hibernate.SQL" level="DEBUG"/>
-	<logger name="org.hibernate.loader.Loader" level="DEBUG" />
-	
-	-->
-	
-	<logger name="org.hibernate" level="ERROR" />
-	
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>
 

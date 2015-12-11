@@ -20,6 +20,9 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private ICertificadosFacade facade;
 
+	/**
+	 * Para las pruebas primero se debe ejecutar esta prueba
+	 */
 	@Test(enabled = false)
 	public void saveTarjetaCertificado() {
 
@@ -40,15 +43,52 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 
 		}
 
-		logger.info("resultado : [{}]", resultado);
+		
 
 	}
 
+	/**
+	 * 2o metodo a ejecutar para la prueba
+	 */
 	@Test(enabled = true)
+	public void aplicaCertificado() {
+
+		String resultado = null;
+
+		MovimientoCertificadoTO movimientoCertificadoTO = new MovimientoCertificadoTO();
+		
+		String idUsuario="certGT";
+		String numeroCertificado="4351807679251398";
+		String puntoVenta="MiCasita";
+		String referencia="MiReferenciaPrueba";
+		float valorAplicado=50f;
+		
+		
+		movimientoCertificadoTO.setIdUsuario(idUsuario);
+		movimientoCertificadoTO.setNumeroCertificado(numeroCertificado);
+		movimientoCertificadoTO.setPuntoVenta(puntoVenta);
+		movimientoCertificadoTO.setReferencia(referencia);
+		movimientoCertificadoTO.setValorAplicado(valorAplicado);
+		
+		try {
+			resultado = facade.aplicaCertificado(movimientoCertificadoTO);
+			logger.info("resultado : [{}]", resultado);
+		} catch (BussinesException e) {
+			logger.error("Error [{}]", e.getMessage(), e);
+		}
+		
+
+	}
+	
+	/**
+	 * Este es es el 3er metodo que se debe ejecutar, se debe activar el
+	 * ceryificado
+	 */
+	@Test(enabled = false)
 	public void cancelaTarjetaCertificado() {
 
 		String idUsuario = "certGT";
-//[1000000000000118|4351807679251398|50|1|10122015|10062016]
+		// [1000000000000118|4351807679251398|50|1|10122015|10062016]
 		String numeroCertificado = "1000000000000118";
 
 		String resultado = null;
@@ -95,30 +135,17 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test(enabled = false)
-	public void aplicaCertificado() {
-
-		String resultado = null;
-
-		MovimientoCertificadoTO movimientoCertificadoTO = null;
-		try {
-			resultado = facade.aplicaCertificado(movimientoCertificadoTO);
-		} catch (BussinesException e) {
-			logger.error("Error [{}]", e.getMessage(), e);
-		}
-		logger.info("resultado : [{}]", resultado);
-
-	}
+	
 
 	@Test(enabled = false)
 	public void cancelaAplicaCertificado() {
 
 		String resultado = null;
 
-		String folio=null;
-		String idUsuario=null;
-		String idpuntoVta=null;
-		String referencia=null;
+		String folio = null;
+		String idUsuario = null;
+		String idpuntoVta = null;
+		String referencia = null;
 		try {
 			resultado = facade.cancelaAplicaCertificado(folio, idUsuario, idpuntoVta, referencia);
 		} catch (BussinesException e) {

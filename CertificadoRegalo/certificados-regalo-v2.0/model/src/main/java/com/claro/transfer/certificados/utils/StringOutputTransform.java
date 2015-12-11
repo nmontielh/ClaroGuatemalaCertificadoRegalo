@@ -65,13 +65,20 @@ public class StringOutputTransform {
 		return builder.toString();
 	}
 
+	/**
+	 * @see entrega la reposentacion de cadena de una aplicacion de tarjeta
+	 * @param tarjeta
+	 * @return
+	 */
 	public static String toString(AplicaTarjetaCertificado tarjeta) {
+		
 		StringBuilder builder = new StringBuilder();
 
 		builder.append(value(tarjeta.getIdMensaje()));
 		builder.append(SEPARATOR);
 		builder.append(value(tarjeta.getMensaje()));
 
+		
 		return builder.toString();
 	}
 	

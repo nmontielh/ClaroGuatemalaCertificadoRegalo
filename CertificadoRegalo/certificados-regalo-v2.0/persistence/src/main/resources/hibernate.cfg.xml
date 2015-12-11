@@ -13,7 +13,7 @@
 
 		<!-- propiedades del hibernate -->
 
-		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">false</property>
 		<property name="hibernate.use_sql_comments">false</property>
 		<property name="hibernate.generate_statistics">false</property>
