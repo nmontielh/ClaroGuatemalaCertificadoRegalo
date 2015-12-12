@@ -28,7 +28,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private CertificadosService service;
 
-	@Test
+	@Test(enabled = false)
 	public void consultasMovtosTest() throws BussinesException {
 
 		final String numcertificado = "1000000000000117";
@@ -39,7 +39,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void consultaRegion() throws BussinesException {
 
 		final String usuario = "certGT";
@@ -51,7 +51,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void consultaCertificado() throws BussinesException {
 		final String numeroTarjeta = "1000000000000117";
 		final long monto = 50;
@@ -66,7 +66,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Deprecated
-	@Test
+	@Test(enabled = false)
 	public void consultaCertificadoByTarjeta() {
 
 		// TODO revisar si aun se usa
@@ -78,7 +78,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void updateCertificado() {
 
 		String numeroTarjeta = "1000000000000117";
@@ -129,7 +129,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void findTarjetaCertificadoByNumTarjeta() {
 
 		String numeroTarjeta = null;
@@ -141,7 +141,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 		}
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void findMovtoCertificadoByFolio() {
 
 		String folio = null;
@@ -154,7 +154,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void updateCanceladoTarjetaCertificados() {
 
 		String idUsuario = null;
@@ -168,7 +168,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void saveMovtoCertificado() {
 		CcTbltarjetacertificado tarjeta = null;
 		MovimientoCertificadoTO movto = null;
@@ -180,7 +180,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 		}
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void saveMovtoCertificadoComplete() {
 
 		CcTbltarjetacertificado tarjeta = null;
@@ -199,6 +199,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 		}
 	}
 
+	@Test(enabled = false)
 	public void updateTarjetaCertificado() {
 
 		CcTbltarjetacertificado tarjeta = null;
@@ -213,6 +214,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 
 	}
 
+	@Test(enabled = false)
 	public void updateTarjetaCertificado2() {
 
 		CcTbltarjetacertificado tarjeta = null;
@@ -225,6 +227,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 		}
 	}
 
+	@Test(enabled = false)
 	public void updateMovtoCertificadoCancelado() {
 
 		CcTblmovimientocertificado movto = null;
@@ -237,7 +240,7 @@ public class ServiceTest extends AbstractTestNGSpringContextTests {
 		}
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void saveTarjetaCertificado() {
 
 		String certificado = "6151807679260547";

@@ -130,8 +130,8 @@ public class CertificadosBussinesService {
 	 * @throws BussinesException
 	 */
 	public String consultaSaldoTarjetaCertificado(String numeroCertificado) throws BussinesException {
-
-		if (numeroCertificado != null && !numeroCertificado.isEmpty())
+		
+		if (numeroCertificado != null && numeroCertificado.isEmpty())
 			throw new BussinesException(ErrorCatalog.CERTIFICADO_NO_VALIDO);
 
 		CcTbltarjetacertificado certificado = service.findTarjetaCertificado(numeroCertificado);
@@ -156,7 +156,7 @@ public class CertificadosBussinesService {
 	public String consultaMovimientosCertificado(String numeroTarjeta) throws BussinesException {
 
 		// Validamos que sea valido la tarjeta
-		if (numeroTarjeta != null && !numeroTarjeta.isEmpty())
+		if (numeroTarjeta == null || numeroTarjeta.isEmpty())
 			throw new BussinesException(ErrorCatalog.NUM_TARJETA_REQUERIDO);
 
 		// nos traemos el movto

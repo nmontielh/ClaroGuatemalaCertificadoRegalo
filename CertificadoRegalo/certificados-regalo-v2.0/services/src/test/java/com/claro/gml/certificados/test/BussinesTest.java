@@ -102,34 +102,37 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 	@Test(enabled = false)
 	public void cancelaTarjetaCertificado() {
 
+		//TODO revisar las excepciones y hacer que se cancele
 		String idUsuario = "certGT";
-		// [1000000000000118|4351807679251398|50|1|10122015|10062016]
-		String numeroCertificado = "1000000000000118";
+
+		String numeroCertificado = "4351807679251398";
 
 		String resultado = null;
 
 		try {
 			resultado = facade.cancelaTarjetaCertificado(numeroCertificado, idUsuario);
+			logger.info("resultado : [{}]", resultado);
 		} catch (BussinesException e) {
 			logger.error("Error [{}]", e.getMessage(), e);
 		}
 
-		logger.info("resultado : [{}]", resultado);
+		
 
 	}
 
 	@Test(enabled = false)
 	public void consultaSaldoTarjetaCertificado() {
-		String numeroCertificado = null;
+		String numeroCertificado = "4351807679251398";
 		String resultado = null;
 
 		try {
 			resultado = facade.consultaSaldoTarjetaCertificado(numeroCertificado);
+			logger.info("resultado : [{}]", resultado);
 		} catch (BussinesException e) {
 			logger.error("Error [{}]", e.getMessage(), e);
 		}
 
-		logger.info("resultado : [{}]", resultado);
+		
 
 	}
 
@@ -138,15 +141,16 @@ public class BussinesTest extends AbstractTestNGSpringContextTests {
 
 		String resultado = null;
 
-		String numeroTarjeta = null;
+		String numeroTarjeta = "1000000000000118";
 		try {
 			resultado = facade.consultaMovimientosCertificado(numeroTarjeta);
+			logger.info("resultado : [{}]", resultado);
 		} catch (BussinesException e) {
 			logger.error("Error [{}]", e.getMessage(), e);
 
 		}
 
-		logger.info("resultado : [{}]", resultado);
+		
 
 	}
 
