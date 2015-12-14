@@ -9,11 +9,14 @@
 
 	<aop:aspectj-autoproxy />
 
-	<context:component-scan base-package="com.claro.ws.service,
-	com.claro.gml.certificados.persistence.dao,
-	com.claro.gml.certificados.services,
+<!-- imports -->
+	<import resource="classpath:dbms-connect-context.xml"/>
+	<import resource="classpath:persistence-context.xml"/>
+
+	<context:component-scan base-package="com.claro.gml.certificados.services,
 	com.claro.gml.certificados.composite.service,
-	com.claro.gml.certificados.facade,	
-	com.claro.aspects" />
+	com.claro.gml.certificados.facade,
+	com.claro.aspects,
+	com.claro.ws.service" />
 
 </beans>
