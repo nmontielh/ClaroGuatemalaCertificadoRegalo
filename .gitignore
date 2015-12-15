@@ -19,3 +19,5 @@ hs_err_pid*
 Servers/
 #ignoramos los archivos de pruebas
 test-output/
+#ignoramos archivos recomenders
+.recommenders/
