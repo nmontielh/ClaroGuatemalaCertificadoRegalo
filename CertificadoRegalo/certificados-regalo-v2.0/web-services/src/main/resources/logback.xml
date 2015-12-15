@@ -1,19 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration>
-<configuration debug="true"> <!-- This will give you some valuable info about logback config upon runtime. 
-		Remove this for production. -->
+<configuration>
 
-	<!-- To enable JMX Management -->
+	<contextName>CertificadosServices</contextName>
+
 	<jmxConfigurator />
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	<appender name="CERTIFICADOS_REQUESTS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="com.claro.platform.utils.filter.InfoOutFilter" />
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/certificados-services-%d{yyyy-MM-dd}/requests.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>%d{HH:mm:ss.SSS} %X{transactionId} %contextName %-5level %logger{36} - %msg%n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-6X{transactionId}] [%-5level] - %-20(%15logger{0}:%L) %msg%n</pattern>
 		</layout>
 	</appender>
 	
-	<root level="INFO">
-		<appender-ref ref="STDOUT" />
-	</root>
+	<appender name="CERTIFICADOS_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="com.claro.platform.utils.filter.ErrorOutFilter" />
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/certificados-services-%d{yyyy-MM-dd}/error.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-6X{transactionId}] [%-5level] - %-20(%15logger{0}:%L) %msg%n</pattern>
+		</layout>
+	</appender>
+	
+	<appender name="SQL_TRACE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/certificados-services-%d{yyyy-MM-dd}/sql.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-6X{transactionId}] [%-5level] - %-20(%15logger{0}:%L) %msg%n</pattern>
+		</layout>
+	</appender>
+			
+	<!-- Apender para log de DAO -->
+	<logger name="com.claro.gml.certificados.persistence.dao" level="INFO" additivity="false">
+		<appender-ref ref="CERTIFICADOS_REQUESTS_FILE" />
+		<appender-ref ref="CERTIFICADOS_ERROR_FILE" />
+	</logger>
 
+	<!-- Apender para logs de los servicios -->
+	<logger name="com.claro.gml.certificados.services" level="INFO" additivity="false">
+		<appender-ref ref="CERTIFICADOS_REQUESTS_FILE" />
+		<appender-ref ref="CERTIFICADOS_ERROR_FILE" />
+	</logger>
+
+	<!-- Appender para los logs de los bussines -->
+
+	<logger name="com.claro.gml.certificados.composite.service" level="INFO" additivity="false">		
+		<appender-ref ref="CERTIFICADOS_REQUESTS_FILE" />
+		<appender-ref ref="CERTIFICADOS_ERROR_FILE" />
+	</logger>
+
+<!-- Log para las fachadas, no muestra nada por el momento  -->
+	<logger name="com.claro.gml.certificados.facade" level="INFO" additivity="false">		
+		<appender-ref ref="CERTIFICADOS_REQUESTS_FILE" />
+		<appender-ref ref="CERTIFICADOS_ERROR_FILE" />
+	</logger>
+
+<!-- Log para las WS, no muestra nada por el momento, si se quiere desplegar utilizar el level DEBUG  -->
+	<logger name="com.claro.ws.service.impl" level="INFO" additivity="false">		
+		<appender-ref ref="CERTIFICADOS_REQUESTS_FILE" />
+		<appender-ref ref="CERTIFICADOS_ERROR_FILE" />
+	</logger>
+		
+	<logger name="org.hibernate" level="ERROR" additivity="false">
+		<appender-ref ref="SQL_TRACE_FILE" />
+	</logger>
+		
 </configuration>
